@@ -103,8 +103,11 @@
         
         /* Hero Section */
         .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            height: 100vh;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
             color: white;
             text-align: center;
             position: relative;
@@ -130,10 +133,10 @@
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4.5rem;
             font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
+            margin-bottom: 2rem;
+            line-height: 1.1;
         }
         
         .hero .subtitle {
@@ -144,9 +147,15 @@
         }
         
         .hero .expertise {
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            opacity: 0.8;
+            font-size: 1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            font-style: italic;
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent);
         }
         
         .hero-buttons {
@@ -674,7 +683,7 @@
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.8rem;
             }
             
             .hero-buttons {
@@ -742,11 +751,11 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>От Middle до Senior за 3-6 месяцев это возможно</h1>
+                <h1>От Middle до Senior<br>за 3-6 месяцев - это возможно</h1>
                 <p class="subtitle">Пошаговый план карьерного прорыва с повышением зарплаты на 30-100%</p>
                 <p class="expertise">Помогаю финтех и IT-специалистам middle+ преодолеть карьерный потолок и занять руководящие позиции. Без блата, политики и многолетнего ожидания</p>
                 <div class="hero-buttons">
-                    <a href="Чек-лист готовности к переговорам.txt" download class="btn-primary">Получить бесплатный чек-лист "Готовности к переговорам"</a>
+                    <a href="https://drive.google.com/uc?export=download&id=1boAiG_w-J4E3yDgWRWZCXB45Yv73aYzA" target="_blank" class="btn-primary">Получить бесплатный чек-лист "Готовности к переговорам"</a>
                     <a href="course.html" class="btn-secondary">Узнать о практикуме</a>
                 </div>
             </div>
@@ -845,7 +854,7 @@
                 </div>
                 
                 <div class="expertise-image">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Андрей Лагунов">
+                    <img src="foto_andrey.png" alt="Андрей Лагунов">
                 </div>
             </div>
         </div>
@@ -1026,7 +1035,7 @@
                         </div>
                         <div>
                             <h4>Email</h4>
-                            <p>a.d.lagunov@gmail.com</p>
+                            <p><a href="mailto:a.d.lagunov@gmail.com" style="color: var(--secondary); text-decoration: none;">a.d.lagunov@gmail.com</a></p>
                         </div>
                     </div>
                     
@@ -1036,7 +1045,7 @@
                         </div>
                         <div>
                             <h4>Telegram</h4>
-                            <p>@career_lagunov_bot</p>
+                            <p><a href="https://t.me/career_lagunov_bot" target="_blank" style="color: var(--secondary); text-decoration: none;">@career_lagunov_bot</a></p>
                         </div>
                     </div>
                     
@@ -1121,8 +1130,8 @@
                 <div class="footer-section">
                     <h3>Telegram канал</h3>
                     <p>Подписывайтесь на канал "Карьера с Лагуновым"</p>
-                    <div class="social-links">
-                        <a href="https://t.me/career_lagunov" target="_blank" style="background: #0088cc; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600;">
+                    <div style="text-align: center;">
+                        <a href="https://t.me/career_lagunov" target="_blank" style="background: #0088cc; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
                             <i class="fab fa-telegram"></i> @career_lagunov
                         </a>
                     </div>
