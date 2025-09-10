@@ -59,10 +59,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 15px;
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 800;
             color: var(--primary);
         }
@@ -126,14 +127,14 @@
             display: flex;
         }
         
-        .mobile-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-            margin: 20px 0;
-            transition: var(--transition);
-            font-weight: 500;
-        }
+            .mobile-menu a {
+                color: white;
+                text-decoration: none;
+                font-size: 1.2rem;
+                margin: 15px 0;
+                transition: var(--transition);
+                font-weight: 500;
+            }
         
         .mobile-menu a:hover {
             color: var(--accent);
@@ -208,20 +209,20 @@
         
         .hero .expertise::before {
             content: '"';
-            font-size: 3rem;
-            color: var(--accent);
+            font-size: 1.5rem;
+            color: var(--text-light);
             position: absolute;
-            top: -10px;
+            top: 10px;
             left: 15px;
             font-family: serif;
         }
         
         .hero .expertise::after {
             content: '"';
-            font-size: 3rem;
-            color: var(--accent);
+            font-size: 1.5rem;
+            color: var(--text-light);
             position: absolute;
-            bottom: -20px;
+            bottom: 10px;
             right: 15px;
             font-family: serif;
         }
@@ -492,6 +493,97 @@
             font-size: 1.1rem;
             font-weight: 600;
             margin: 0;
+        }
+        
+        /* Consultation Section */
+        .consultation {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .consultation-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .consultation-card {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+        }
+        
+        .consultation-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .consultation-header h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .consultation-price {
+            font-size: 2.5rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .consultation-description {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .consultation-description p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+        
+        .consultation-features {
+            margin-bottom: 40px;
+        }
+        
+        .feature-block {
+            margin-bottom: 25px;
+        }
+        
+        .feature-block h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .feature-block ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-block li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-light);
+        }
+        
+        .feature-block li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .feature-block p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        
+        .consultation-cta {
+            text-align: center;
         }
         
         /* Results Section */
@@ -770,8 +862,8 @@
             }
             
             .hero h1 {
-                font-size: 2.2rem;
-                line-height: 1.2;
+                font-size: 3.5rem;
+                line-height: 1.1;
                 margin-bottom: 1.5rem;
             }
             
@@ -781,20 +873,20 @@
             }
             
             .hero .expertise {
-                font-size: 0.9rem;
-                padding: 20px 15px;
-                margin-bottom: 2rem;
+                font-size: 0.85rem;
+                padding: 15px 20px;
+                margin-bottom: 1.5rem;
             }
             
             .hero .expertise::before {
-                font-size: 2rem;
-                top: -5px;
+                font-size: 1.2rem;
+                top: 5px;
                 left: 10px;
             }
             
             .hero .expertise::after {
-                font-size: 2rem;
-                bottom: -15px;
+                font-size: 1.2rem;
+                bottom: 5px;
                 right: 10px;
             }
             
@@ -944,17 +1036,43 @@
             .section-subtitle {
                 font-size: 1rem;
             }
+            
+            /* Consultation Mobile */
+            .consultation-card {
+                padding: 25px;
+                margin-top: 30px;
+            }
+            
+            .consultation-header h3 {
+                font-size: 1.5rem;
+            }
+            
+            .consultation-price {
+                font-size: 2rem;
+            }
+            
+            .consultation-description p {
+                font-size: 1rem;
+            }
+            
+            .feature-block h4 {
+                font-size: 1.1rem;
+            }
+            
+            .feature-block li {
+                font-size: 0.9rem;
+            }
         }
         
         /* Extra Small Devices */
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 1.8rem;
+                font-size: 2.8rem;
             }
             
             .hero .expertise {
-                font-size: 0.85rem;
-                padding: 15px 10px;
+                font-size: 0.8rem;
+                padding: 12px 15px;
             }
             
             .section-title {
@@ -976,6 +1094,18 @@
             
             .image-placeholder i {
                 font-size: 2.5rem;
+            }
+            
+            .consultation-card {
+                padding: 20px;
+            }
+            
+            .consultation-header h3 {
+                font-size: 1.3rem;
+            }
+            
+            .consultation-price {
+                font-size: 1.8rem;
             }
         }
         
@@ -1182,7 +1312,7 @@
                         </div>
                         
                         <div class="hook-cta">
-                            <a href="course.html" class="btn-primary">Узнать подробнее о практикуме</a>
+                            <a href="course.html" class="btn-primary">Подробнее о курсе</a>
                             <p class="hook-note">От 25 000 ₽ • Начинается сразу после оплаты</p>
                         </div>
                     </div>
@@ -1205,18 +1335,36 @@
                 <h2 class="section-title">Личная консультация</h2>
                 <p class="section-subtitle">Индивидуальная 60-минутная сессия для решения вашего карьерного запроса</p>
                 
-                <div class="service-card" style="max-width: 600px; margin: 0 auto;">
-                    <div class="service-title">Стратегическая сессия</div>
-                    <div class="service-price">6 000 ₽/час</div>
-                    <p class="service-description">Глубокая диагностика карьерной ситуации и скрытых блоков</p>
-                    <ul class="service-features">
-                        <li>3-часовая персональная сессия (разбита на 2 встречи)</li>
-                        <li>Персональный план роста с конкретными сроками</li>
-                        <li>Анализ целевых компаний и позиций с зарплатными вилками</li>
-                        <li>Индивидуальная стратегия переговоров с работодателем</li>
-                        <li>Гарантия результата или возврат 100% стоимости</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary">Забронировать консультацию</a>
+                <div class="consultation-card">
+                    <div class="consultation-header">
+                        <h3>Стратегическая сессия</h3>
+                        <div class="consultation-price">6 000 ₽/час</div>
+                    </div>
+                    
+                    <div class="consultation-description">
+                        <p>Глубокая диагностика карьерной ситуации и скрытых блоков</p>
+                    </div>
+                    
+                    <div class="consultation-features">
+                        <div class="feature-block">
+                            <h4>Что включено:</h4>
+                            <ul>
+                                <li>3-часовая персональная сессия (разбита на 2 встречи)</li>
+                                <li>Персональный план роста с конкретными сроками</li>
+                                <li>Анализ целевых компаний и позиций с зарплатными вилками</li>
+                                <li>Индивидуальная стратегия переговоров с работодателем</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-block">
+                            <h4>Гарантия:</h4>
+                            <p>Если через 6 месяцев следования плану вы не получите повышение или предложение на руководящую позицию — возвращаю 100% стоимости</p>
+                        </div>
+                    </div>
+                    
+                    <div class="consultation-cta">
+                        <a href="#contact" class="btn-primary">Забронировать консультацию</a>
+                    </div>
                 </div>
             </div>
         </div>
