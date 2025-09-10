@@ -101,6 +101,53 @@
             box-shadow: var(--shadow);
         }
         
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        .mobile-menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            margin: 20px 0;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .mobile-menu a:hover {
+            color: var(--accent);
+        }
+        
+        .mobile-menu-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        
         /* Hero Section */
         .hero {
             height: 100vh;
@@ -704,38 +751,231 @@
         
         /* Responsive */
         @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
             .nav {
                 display: none;
             }
             
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            /* Hero Section Mobile */
+            .hero {
+                height: 100vh;
+                padding: 20px 0;
+            }
+            
             .hero h1 {
-                font-size: 2.8rem;
+                font-size: 2.2rem;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero .expertise {
+                font-size: 0.9rem;
+                padding: 20px 15px;
+                margin-bottom: 2rem;
+            }
+            
+            .hero .expertise::before {
+                font-size: 2rem;
+                top: -5px;
+                left: 10px;
+            }
+            
+            .hero .expertise::after {
+                font-size: 2rem;
+                bottom: -15px;
+                right: 10px;
+            }
+            
+            .hero .quote-author {
+                font-size: 0.8rem;
+                margin-top: 10px;
             }
             
             .hero-buttons {
                 flex-direction: column;
                 align-items: center;
+                gap: 15px;
             }
             
-            .expertise-content,
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+                font-size: 1rem;
+                padding: 14px 20px;
+            }
+            
+            /* Pain Points Mobile */
+            .pain-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .pain-card {
+                padding: 20px;
+            }
+            
+            .pain-card h3 {
+                font-size: 1.2rem;
+            }
+            
+            /* Expertise Mobile */
+            .expertise-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .expertise-text h2 {
+                font-size: 2rem;
+            }
+            
+            .achievement {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .achievement-icon {
+                margin: 0 auto;
+            }
+            
+            /* Course Hook Mobile */
+            .hook-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 25px;
+            }
+            
+            .hook-text h3 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+            
+            .hook-text p {
+                font-size: 1rem;
+                text-align: center;
+            }
+            
+            .feature-item {
+                font-size: 0.9rem;
+            }
+            
+            .image-placeholder {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .image-placeholder i {
+                font-size: 3rem;
+            }
+            
+            .image-placeholder p {
+                font-size: 1rem;
+            }
+            
+            /* Results Mobile */
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .result-number {
+                font-size: 2.5rem;
+            }
+            
+            .result-text {
+                font-size: 0.9rem;
+            }
+            
+            /* Testimonials Mobile */
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .testimonial-card {
+                padding: 20px;
+            }
+            
+            /* Contact Mobile */
             .contact-content {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
             }
             
-            .services-grid,
-            .testimonials-grid {
+            .contact-form {
+                padding: 25px;
+            }
+            
+            .form-control {
+                padding: 12px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            /* Footer Mobile */
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            /* Section Titles Mobile */
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-subtitle {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Extra Small Devices */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero .expertise {
+                font-size: 0.85rem;
+                padding: 15px 10px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .results-grid {
                 grid-template-columns: 1fr;
             }
             
             .hook-content {
-                grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 30px;
+                padding: 20px;
             }
             
-            .service-card.featured {
-                transform: none;
+            .image-placeholder {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .image-placeholder i {
+                font-size: 2.5rem;
             }
         }
         
@@ -775,9 +1015,24 @@
                     <a href="#contact">Контакты</a>
                 </nav>
                 <a href="#contact" class="cta-btn">Записаться</a>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-close">
+            <i class="fas fa-times"></i>
+        </div>
+        <a href="#about">Обо мне</a>
+        <a href="#services">Услуги</a>
+        <a href="#results">Результаты</a>
+        <a href="#testimonials">Отзывы</a>
+        <a href="#contact">Контакты</a>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -1190,6 +1445,26 @@
             });
         });
 
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.add('active');
+        });
+        
+        mobileMenuClose.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+        });
+        
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
+        });
+        
         // Form submission
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
