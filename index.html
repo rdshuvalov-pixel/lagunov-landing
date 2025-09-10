@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Андрей Лагунов | От Middle до Senior за 3-6 месяцев</title>
+    <meta name="description" content="Карьерный консультант Андрей Лагунов. Практикум 'Middle to Senior' и личные консультации. Повышение зарплаты на 30-100% за 3-6 месяцев.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --text: #334155;
+            --text-light: #64748b;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .nav {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .nav a:hover {
+            color: var(--secondary);
+        }
+        
+        .cta-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .hero .expertise {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Pain Points Section */
+        .pain-points {
+            padding: 100px 0;
+            background: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .pain-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--danger);
+        }
+        
+        .pain-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pain-card h3 {
+            color: var(--danger);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        /* Expertise Section */
+        .expertise {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .expertise-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .expertise-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .expertise-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text-light);
+        }
+        
+        .achievements {
+            display: grid;
+            gap: 20px;
+        }
+        
+        .achievement {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        
+        .achievement-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .achievement-text h4 {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        
+        .achievement-text p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        
+        .expertise-image {
+            position: relative;
+        }
+        
+        .expertise-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background: var(--light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .service-card.featured::before {
+            background: var(--accent);
+        }
+        
+        .service-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .service-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .service-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .service-description {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .service-features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* Results Section */
+        .results {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .result-card {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .result-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .result-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--light);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--secondary);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--text);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .author-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .contact-info h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .contact-info p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .contact-form {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .expertise-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .services-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card.featured {
+                transform: none;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Андрей Лагунов</div>
+                <nav class="nav">
+                    <a href="#about">Обо мне</a>
+                    <a href="#services">Услуги</a>
+                    <a href="#results">Результаты</a>
+                    <a href="#testimonials">Отзывы</a>
+                    <a href="#contact">Контакты</a>
+                </nav>
+                <a href="#contact" class="cta-btn">Записаться</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>От Middle до Senior / Lead / C-level за 3-6 месяцев</h1>
+                <p class="subtitle">Пошаговый план карьерного прорыва с повышением зарплаты на 30-100%</p>
+                <p class="expertise">Помогаю финтех и IT-специалистам middle+ преодолеть карьерный потолок и занять руководящие позиции. Без блата, политики и многолетнего ожидания</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">Получить бесплатный гайд "Карьерный прорыв за 90 дней"</a>
+                    <a href="course.html" class="btn-secondary">Узнать о практикуме</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="pain-points">
+        <div class="container">
+            <h2 class="section-title">Почему ваша карьера застряла, пока коллеги получают повышения</h2>
+            <p class="section-subtitle">Узнайте, какие скрытые барьеры мешают вашему росту</p>
+            
+            <div class="pain-grid">
+                <div class="pain-card">
+                    <h3>Зарплата растет только на инфляцию</h3>
+                    <p>Работаете на одной позиции уже 2+ года, а зарплата растет только на индексацию инфляции</p>
+                </div>
+                
+                <div class="pain-card">
+                    <h3>Коллеги становятся руководителями</h3>
+                    <p>Видите, как менее опытные коллеги становятся вашими руководителями</p>
+                </div>
+                
+                <div class="pain-card">
+                    <h3>Упираетесь в невидимый потолок</h3>
+                    <p>Чувствуете, что упираетесь в невидимый потолок, который никак не сломать</p>
+                </div>
+                
+                <div class="pain-card">
+                    <h3>Технические навыки не дают преимущества</h3>
+                    <p>Боитесь, что технические навыки больше не дают конкурентного преимущества</p>
+                </div>
+                
+                <div class="pain-card">
+                    <h3>Не знаете, какие навыки нужны</h3>
+                    <p>Понимаете, что для роста нужны не только hard skills, но не знаете, какие именно</p>
+                </div>
+                
+                <div class="pain-card">
+                    <h3>Боитесь откликаться на вакансии</h3>
+                    <p>Видите вакансии руководителей, но не решаетесь откликнуться</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="about" class="expertise">
+        <div class="container">
+            <div class="expertise-content">
+                <div class="expertise-text">
+                    <h2>Как я прошел путь от рядового специалиста до CPO в топ-финтех компаний</h2>
+                    <p>10 лет назад я был обычным специалистом в Сбербанке с зарплатой 60 тыс. руб. Сегодня я отвечаю за продуктовую разработку международной финтех-компании и вышел на доход 1 млн.руб.</p>
+                    
+                    <div class="achievements">
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="achievement-text">
+                                <h4>Путь от специалиста до CPO</h4>
+                                <p>Строил карьеру в российском финтехе (Газпромбанк, Россельхозбанк, Московская биржа)</p>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <i class="fas fa-microphone"></i>
+                            </div>
+                            <div class="achievement-text">
+                                <h4>Эксперт и спикер</h4>
+                                <p>Спикер международных конференций по цифровой трансформации банков</p>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="achievement-text">
+                                <h4>Финалист "Лидеры России"</h4>
+                                <p>Финалист конкурса «Лидеры России» 2021 в треке ИТ</p>
+                            </div>
+                        </div>
+                        
+                        <div class="achievement">
+                            <div class="achievement-icon">
+                                <i class="fas fa-running"></i>
+                            </div>
+                            <div class="achievement-text">
+                                <h4>Марафонец</h4>
+                                <p>Многократный участник забегов на марафонские дистанции</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="expertise-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Андрей Лагунов">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Практикум "Middle to Senior"</h2>
+            <p class="section-subtitle">Комплексная программа развития, основанная на моем личном опыте роста от специалиста до топ-менеджера</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-title">Базовый</div>
+                    <div class="service-price">25 000 ₽</div>
+                    <p class="service-description">Доступ к 6 модулям практикума с практическими заданиями</p>
+                    <ul class="service-features">
+                        <li>6 модулей практикума</li>
+                        <li>Практические задания для самопроверки</li>
+                        <li>Чат с участниками курса</li>
+                        <li>Шаблоны резюме и сопроводительных писем</li>
+                        <li>Доступ к материалам на 3 месяца</li>
+                    </ul>
+                    <a href="course.html" class="btn-primary">Выбрать тариф</a>
+                </div>
+                
+                <div class="service-card featured">
+                    <div class="service-badge">Популярный</div>
+                    <div class="service-title">Оптимальный</div>
+                    <div class="service-price">45 000 ₽</div>
+                    <p class="service-description">Все из базового тарифа + персональные консультации</p>
+                    <ul class="service-features">
+                        <li>Все из тарифа Базовый</li>
+                        <li>3 персональные консультации</li>
+                        <li>Разбор вашего резюме и профиля</li>
+                        <li>Персональный план развития</li>
+                        <li>Доступ к материалам на 6 месяцев</li>
+                        <li>Закрытые вебинары с экспертами</li>
+                    </ul>
+                    <a href="course.html" class="btn-primary">Выбрать тариф</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-title">Премиум</div>
+                    <div class="service-price">75 000 ₽</div>
+                    <p class="service-description">Максимальная поддержка до результата</p>
+                    <ul class="service-features">
+                        <li>Все из тарифа Оптимальный</li>
+                        <li>6 персональных консультаций</li>
+                        <li>Подготовка к собеседованиям</li>
+                        <li>Переговорное сопровождение</li>
+                        <li>Пожизненный доступ к материалам</li>
+                        <li>Личная рекомендация от меня</li>
+                    </ul>
+                    <a href="course.html" class="btn-primary">Выбрать тариф</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consultation Section -->
+    <section class="consultation">
+        <div class="container">
+            <div class="consultation-content">
+                <h2 class="section-title">Личная консультация</h2>
+                <p class="section-subtitle">Индивидуальная 60-минутная сессия для решения вашего карьерного запроса</p>
+                
+                <div class="service-card" style="max-width: 600px; margin: 0 auto;">
+                    <div class="service-title">Стратегическая сессия</div>
+                    <div class="service-price">6 000 ₽/час</div>
+                    <p class="service-description">Глубокая диагностика карьерной ситуации и скрытых блоков</p>
+                    <ul class="service-features">
+                        <li>3-часовая персональная сессия (разбита на 2 встречи)</li>
+                        <li>Персональный план роста с конкретными сроками</li>
+                        <li>Анализ целевых компаний и позиций с зарплатными вилками</li>
+                        <li>Индивидуальная стратегия переговоров с работодателем</li>
+                        <li>Гарантия результата или возврат 100% стоимости</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Забронировать консультацию</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="results">
+        <div class="container">
+            <h2 class="section-title">Результаты моих клиентов</h2>
+            <p class="section-subtitle">За годы коучинга я помог десяткам специалистов достичь значительного карьерного прогресса</p>
+            
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">85%</div>
+                    <div class="result-text">клиентов повысили позицию в течение 6 месяцев</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">40-80%</div>
+                    <div class="result-text">рост дохода после прохождения программ</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">50+</div>
+                    <div class="result-text">специалистов прошли мои программы</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">4.9/5</div>
+                    <div class="result-text">средняя оценка качества консультаций</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Отзывы клиентов</h2>
+            <p class="section-subtitle">Что говорят специалисты, которые уже прошли консультации и практикумы</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Благодаря консультации с Андреем я смог систематизировать свои знания и понять, каких именно навыков мне не хватало для перехода на руководящую позицию. Через 3 месяца после работы с ним я получил предложение с увеличением зарплаты на 60%.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">МК</div>
+                        <div class="author-info">
+                            <h4>Михаил К.</h4>
+                            <p>Руководитель отдела в IT-компании</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Практикум дал мне именно те инструменты, которых не хватало для уверенности в своих силах. Особенно ценными были модули по стратегическому мышлению и коммуникации с руководством. Теперь я не просто специалист, а полноценный эксперт в команде.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">ЕС</div>
+                        <div class="author-info">
+                            <h4>Елена С.</h4>
+                            <p>Product Manager в fintech</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Личная консультация помогла мне понять, как правильно презентовать свой опыт и навыки. Андрей не только дал ценные советы по резюме, но и помог подготовиться к сложным вопросам на собеседовании. Результат — оффер от компании мечты!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">АП</div>
+                        <div class="author-info">
+                            <h4>Артем П.</h4>
+                            <p>Senior Analyst в международной компании</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Прекратите ждать повышения — создайте его сами</h2>
+            <p>Получите персональную стратегию карьерного роста и начните действовать уже сегодня</p>
+            <a href="#contact" class="btn-primary">Получить бесплатный гайд</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Свяжитесь со мной</h2>
+                    <p>Готовы сделать следующий шаг в карьере? Заполните форму или свяжитесь со мной напрямую.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>andrey.lagunov@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div>
+                            <h4>Telegram</h4>
+                            <p>@career_lagunov</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Формат работы</h4>
+                            <p>Онлайн (Zoom, Skype) или в Москве</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" class="form-control" placeholder="Как к вам обращаться?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Для ответа вам" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Интересующая услуга</label>
+                            <select id="service" class="form-control" required>
+                                <option value="">-- Выберите услугу --</option>
+                                <option value="consultation">Личная консультация (6000 ₽/час)</option>
+                                <option value="basic">Практикум "Базовый" (25000 ₽)</option>
+                                <option value="optimal">Практикум "Оптимальный" (45000 ₽)</option>
+                                <option value="premium">Практикум "Премиум" (75000 ₽)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" class="form-control" placeholder="Расскажите о вашей ситуации и целях" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Андрей Лагунов</h3>
+                    <p>Карьерный консультант, помогающий профессионалам расти от Middle до Senior и выше.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <p><a href="#about">Обо мне</a></p>
+                    <p><a href="#services">Услуги</a></p>
+                    <p><a href="#results">Результаты</a></p>
+                    <p><a href="#testimonials">Отзывы</a></p>
+                    <p><a href="#contact">Контакты</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Услуги</h3>
+                    <p><a href="#consultation">Личная консультация</a></p>
+                    <p><a href="#services">Практикум "Базовый"</a></p>
+                    <p><a href="#services">Практикум "Оптимальный"</a></p>
+                    <p><a href="#services">Практикум "Премиум"</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Подписаться на рассылку</h3>
+                    <p>Получайте советы по карьерному развитию</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Ваш email">
+                        </div>
+                        <button type="submit" class="btn-primary">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Андрей Лагунов. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время.');
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.pain-card, .service-card, .testimonial-card, .result-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

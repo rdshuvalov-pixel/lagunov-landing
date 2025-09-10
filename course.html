@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Практикум "Middle to Senior" | Андрей Лагунов</title>
+    <meta name="description" content="7-дневный практикум для перехода от Middle к Senior. Готовые инструменты, шаблоны и персональная стратегия карьерного роста.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --text: #334155;
+            --text-light: #64748b;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .nav a:hover {
+            color: var(--secondary);
+        }
+        
+        .cta-btn {
+            background: var(--gradient);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        
+        .hero .hook {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .btn-primary:hover {
+            background: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary);
+        }
+        
+        /* Course Structure */
+        .course-structure {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .day-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 30px;
+            transition: var(--transition);
+            border-left: 4px solid var(--secondary);
+            position: relative;
+        }
+        
+        .day-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .day-number {
+            background: var(--gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .day-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .day-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+        
+        .day-outcomes {
+            list-style: none;
+        }
+        
+        .day-outcomes li {
+            padding: 5px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .day-outcomes li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0;
+            background: var(--light);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .benefit-description {
+            color: var(--text-light);
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 2px solid transparent;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+        
+        .pricing-badge {
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .pricing-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .pricing-description {
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* Guarantee Section */
+        .guarantee {
+            padding: 80px 0;
+            background: var(--light);
+            text-align: center;
+        }
+        
+        .guarantee-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .guarantee-icon {
+            width: 100px;
+            height: 100px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .guarantee h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .guarantee p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .contact-info h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .contact-info p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .contact-form {
+            background: var(--light);
+            padding: 40px;
+            border-radius: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .pricing-grid,
+            .days-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Андрей Лагунов</a>
+                <nav class="nav">
+                    <a href="index.html">Главная</a>
+                    <a href="#structure">Структура</a>
+                    <a href="#benefits">Преимущества</a>
+                    <a href="#pricing">Тарифы</a>
+                    <a href="#contact">Контакты</a>
+                </nav>
+                <a href="#contact" class="cta-btn">Записаться</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Практикум "Middle to Senior"</h1>
+                <p class="subtitle">7 дней практических заданий для карьерного прорыва</p>
+                <div class="hook">
+                    <strong>За 7 дней получите:</strong> готовые инструменты для переговоров с руководством, персональную стратегию под вашего руководителя и четкий план перехода на следующий уровень
+                </div>
+                <div class="hero-buttons">
+                    <a href="#pricing" class="btn-primary">Выбрать тариф</a>
+                    <a href="#structure" class="btn-secondary">Посмотреть программу</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Structure -->
+    <section id="structure" class="course-structure">
+        <div class="container">
+            <h2 class="section-title">Программа практикума</h2>
+            <p class="section-subtitle">7 дней структурированной работы над вашей карьерой</p>
+            
+            <div class="days-grid">
+                <div class="day-card">
+                    <div class="day-number">1</div>
+                    <h3 class="day-title">Аудит своих достижений</h3>
+                    <p class="day-description">Создаем четкую картину ваших достижений за последние 12 месяцев и переводим их на язык бизнеса</p>
+                    <ul class="day-outcomes">
+                        <li>Досье достижений с цифрами</li>
+                        <li>Перевод технических результатов в бизнес-ценность</li>
+                        <li>Готовые аргументы для переговоров</li>
+                    </ul>
+                </div>
+                
+                <div class="day-card">
+                    <div class="day-number">2</div>
+                    <h3 class="day-title">Изучаем своего руководителя</h3>
+                    <p class="day-description">Определяем тип вашего руководителя и создаем персональную стратегию взаимодействия с ним</p>
+                    <ul class="day-outcomes">
+                        <li>Определение типа руководителя</li>
+                        <li>Персональная стратегия коммуникации</li>
+                        <li>Готовые фразы и аргументы</li>
+                    </ul>
+                </div>
+                
+                <div class="day-card">
+                    <div class="day-number">3</div>
+                    <h3 class="day-title">Система регулярной отчетности</h3>
+                    <p class="day-description">Создаем систему, которая сделает ваши достижения видимыми для руководства</p>
+                    <ul class="day-outcomes">
+                        <li>Шаблоны еженедельных отчетов</li>
+                        <li>Система фиксации достижений</li>
+                        <li>Стратегия формирования репутации</li>
+                    </ul>
+                </div>
+                
+                <div class="day-card">
+                    <div class="day-number">4</div>
+                    <h3 class="day-title">Горизонтальное влияние</h3>
+                    <p class="day-description">Учимся расширять зону видимости и ценности за пределы своей роли</p>
+                    <ul class="day-outcomes">
+                        <li>Инициативы для влияния на команды</li>
+                        <li>Стратегия расширения зоны ответственности</li>
+                        <li>План горизонтального роста</li>
+                    </ul>
+                </div>
+                
+                <div class="day-card">
+                    <div class="day-number">5</div>
+                    <h3 class="day-title">Подготовка к разговору о повышении</h3>
+                    <p class="day-description">Создаем убедительную аргументацию и готовимся к разным сценариям</p>
+                    <ul class="day-outcomes">
+                        <li>Презентация достижений</li>
+                        <li>Сценарии разговора</li>
+                        <li>Проработка возражений</li>
+                    </ul>
+                </div>
+                
+                <div class="day-card">
+                    <div class="day-number">6</div>
+                    <h3 class="day-title">Тайминг и техники переговоров</h3>
+                    <p class="day-description">Выбираем правильный момент и учимся вести переговоры уверенно</p>
+                    <ul class="day-outcomes">
+                        <li>Выбор оптимального времени</li>
+                        <li>Техники ведения переговоров</li>
+                        <li>Готовые скрипты и фразы</li>
+                    </ul>
+                </div>
+                
+                <div class="day-card">
+                    <div class="day-number">7</div>
+                    <h3 class="day-title">План роста на 6 месяцев</h3>
+                    <p class="day-description">Создаем персональный карьерный план для закрепления результата</p>
+                    <ul class="day-outcomes">
+                        <li>Личный карьерный roadmap</li>
+                        <li>План развития навыков</li>
+                        <li>Метрики успеха</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Что вы получите</h2>
+            <p class="section-subtitle">Конкретные инструменты и результаты для карьерного роста</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="benefit-title">Готовые инструменты</h3>
+                    <p class="benefit-description">Шаблоны отчетов, скрипты переговоров, чек-листы и презентации для немедленного использования</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="benefit-title">Персональная стратегия</h3>
+                    <p class="benefit-description">Индивидуальный подход под тип вашего руководителя и специфику вашей компании</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-target"></i>
+                    </div>
+                    <h3 class="benefit-title">Четкий план действий</h3>
+                    <p class="benefit-description">Пошаговый план перехода от Middle к Senior с конкретными сроками и метриками</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="benefit-title">Готовые аргументы</h3>
+                    <p class="benefit-description">Убедительные аргументы для разговора о повышении с учетом ваших достижений</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="benefit-title">Расширение влияния</h3>
+                    <p class="benefit-description">Стратегия горизонтального влияния для повышения видимости в компании</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="benefit-title">Быстрый результат</h3>
+                    <p class="benefit-description">Первые результаты уже через 7 дней, значительный прогресс за 90 дней</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Выберите подходящий тариф</h2>
+            <p class="section-subtitle">Доступ к практикуму с разным уровнем поддержки</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-title">Базовый</div>
+                    <div class="pricing-price">25 000 ₽</div>
+                    <p class="pricing-description">Доступ к 7-дневному практикуму с самостоятельным прохождением</p>
+                    <ul class="pricing-features">
+                        <li>7 модулей практикума</li>
+                        <li>Готовые шаблоны и инструменты</li>
+                        <li>Чек-листы для самопроверки</li>
+                        <li>Доступ к материалам на 3 месяца</li>
+                        <li>Чат с участниками курса</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Выбрать тариф</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">Популярный</div>
+                    <div class="pricing-title">Оптимальный</div>
+                    <div class="pricing-price">45 000 ₽</div>
+                    <p class="pricing-description">Практикум + персональные консультации для максимального результата</p>
+                    <ul class="pricing-features">
+                        <li>Все из тарифа Базовый</li>
+                        <li>3 персональные консультации</li>
+                        <li>Разбор вашего резюме и профиля</li>
+                        <li>Персональный план развития</li>
+                        <li>Доступ к материалам на 6 месяцев</li>
+                        <li>Закрытые вебинары с экспертами</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Выбрать тариф</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-title">Премиум</div>
+                    <div class="pricing-price">75 000 ₽</div>
+                    <p class="pricing-description">Максимальная поддержка до достижения результата</p>
+                    <ul class="pricing-features">
+                        <li>Все из тарифа Оптимальный</li>
+                        <li>6 персональных консультаций</li>
+                        <li>Подготовка к собеседованиям</li>
+                        <li>Переговорное сопровождение</li>
+                        <li>Пожизненный доступ к материалам</li>
+                        <li>Личная рекомендация от Андрея</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Выбрать тариф</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee">
+        <div class="container">
+            <div class="guarantee-content">
+                <div class="guarantee-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>Гарантия результата</h2>
+                <p>Если через 6 месяцев следования плану вы не получите повышение или предложение на руководящую позицию — возвращаю 100% стоимости</p>
+                <a href="#contact" class="btn-primary">Начать практикум</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Готовы сделать карьерный прорыв?</h2>
+            <p>Присоединяйтесь к практикуму и получите план перехода от Middle к Senior за 7 дней</p>
+            <a href="#contact" class="btn-primary">Записаться на практикум</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Записаться на практикум</h2>
+                    <p>Выберите подходящий тариф и начните свой путь к карьерному росту уже сегодня</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>andrey.lagunov@example.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <div>
+                            <h4>Telegram</h4>
+                            <p>@career_lagunov</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4>Начало</h4>
+                            <p>Практикум начинается сразу после оплаты</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" class="form-control" placeholder="Как к вам обращаться?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Для связи с вами" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tariff">Выберите тариф</label>
+                            <select id="tariff" class="form-control" required>
+                                <option value="">-- Выберите тариф --</option>
+                                <option value="basic">Базовый (25000 ₽)</option>
+                                <option value="optimal">Оптимальный (45000 ₽)</option>
+                                <option value="premium">Премиум (75000 ₽)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Дополнительная информация</label>
+                            <textarea id="message" class="form-control" placeholder="Расскажите о вашей текущей ситуации и целях"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary">Записаться на практикум</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Андрей Лагунов</h3>
+                    <p>Карьерный консультант, помогающий профессионалам расти от Middle до Senior и выше.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <p><a href="index.html">Главная</a></p>
+                    <p><a href="#structure">Структура курса</a></p>
+                    <p><a href="#benefits">Преимущества</a></p>
+                    <p><a href="#pricing">Тарифы</a></p>
+                    <p><a href="#contact">Контакты</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Практикум</h3>
+                    <p><a href="#structure">Программа курса</a></p>
+                    <p><a href="#pricing">Тариф "Базовый"</a></p>
+                    <p><a href="#pricing">Тариф "Оптимальный"</a></p>
+                    <p><a href="#pricing">Тариф "Премиум"</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Подписаться на рассылку</h3>
+                    <p>Получайте советы по карьерному развитию</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Ваш email">
+                        </div>
+                        <button type="submit" class="btn-primary">Подписаться</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Андрей Лагунов. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время для подтверждения записи на практикум.');
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.day-card, .benefit-card, .pricing-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
