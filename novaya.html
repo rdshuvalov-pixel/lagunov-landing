@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новая страница | Андрей Лагунов</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --text: #334155;
+            --text-light: #64748b;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        .header { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; padding: 15px 0; box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.2rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+        .nav { display: flex; list-style: none; gap: 30px; }
+        .nav a { text-decoration: none; color: var(--text); font-weight: 500; transition: var(--transition); }
+        .nav a:hover { color: var(--secondary); }
+
+        .hero { padding: 140px 0 100px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>'); opacity: 0.3; }
+        .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+        .hero p { max-width: 900px; margin: 0 auto 16px; opacity: 0.95; }
+        .hero .cta { margin-top: 24px; }
+        .btn-primary { background: var(--accent); color: white; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: var(--transition); display: inline-block; }
+        .btn-primary:hover { background: #d97706; transform: translateY(-2px); box-shadow: 0 15px 30px rgba(245, 158, 11, 0.3); }
+
+        .section { padding: 80px 0; background: white; }
+        .section.alt { background: var(--light); }
+        .section-title { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 1rem; color: var(--primary); }
+        .section-subtitle { text-align: center; font-size: 1.1rem; color: var(--text-light); margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        .list { max-width: 900px; margin: 0 auto; }
+        .list li { margin: 10px 0; padding-left: 22px; position: relative; }
+        .list li::before { content: '•'; position: absolute; left: 0; color: var(--secondary); font-weight: 700; }
+
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 32px; }
+        .card { background: white; border-radius: 16px; padding: 24px; box-shadow: var(--shadow); }
+        .card h3 { margin-bottom: 12px; color: var(--primary); }
+        .card ul { list-style: none; padding: 0; }
+        .card li { margin: 8px 0; padding-left: 20px; position: relative; }
+        .card li::before { content: '✓'; position: absolute; left: 0; color: var(--success); font-weight: 700; }
+
+        .cta-section { padding: 100px 0; background: var(--gradient); color: white; text-align: center; }
+        .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+        .cta-section p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; }
+
+        .footer { background: var(--dark); color: white; padding: 40px 0; text-align: center; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">Андрей Лагунов</a>
+                <nav class="nav">
+                    <a href="index.html">Главная</a>
+                    <a href="course.html">Практикум</a>
+                    <a href="#contact">Контакты</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>От middle до Senior / Lead / C-level за 3-6 месяцев</h1>
+            <p>Пошаговый план карьерного прорыва с повышением зарплаты на 30-100%</p>
+            <p>Помогаю финтех и IT-специалистам middle+ преодолеть карьерный потолок и занять руководящие позиции. Без блата, политики и многолетнего ожидания</p>
+            <p><strong>Андрей Лагунов</strong> — прошел путь от специалиста в банке до CPO крупнейших российских и международных компаний за 10 лет</p>
+            <div class="cta">
+                <a class="btn-primary" href="https://drive.google.com/uc?export=download&id=1boAiG_w-J4E3yDgWRWZCXB45Yv73aYzA" target="_blank">Получить бесплатный гайд “Карьерный прорыв за 90 дней”</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section alt">
+        <div class="container">
+            <h2 class="section-title">Почему ваша карьера застряла, пока коллеги получают повышения</h2>
+            <ul class="list">
+                <li>Работаете на одной позиции уже 2+ года, а зарплата растет только на индексацию инфляции</li>
+                <li>Видите, как менее опытные коллеги становятся вашими руководителями</li>
+                <li>Чувствуете, что упираетесь в невидимый потолок, который никак не сломать</li>
+                <li>Боитесь, что технические навыки больше не дают конкурентного преимущества</li>
+                <li>Понимаете, что для роста нужны не только hard skills, но не знаете, какие именно</li>
+                <li>Видите вакансии руководителей, но не решаетесь откликнуться</li>
+                <li>Знаете, что пора что-то менять, но действуете «вслепую» без четкого плана</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Как я прошел путь от рядового специалиста до CPO</h2>
+            <p class="section-subtitle">и вышел на доход 1 млн руб.</p>
+            <div class="list">
+                <p>10 лет назад я был обычным специалистом в Сбербанке с зарплатой 60 тыс. руб.</p>
+                <p>Затем я строил карьеру в российском финтехе (Газпромбанк, Россельхозбанк, Московская биржа).</p>
+                <p>Сегодня я отвечаю за продуктовую разработку международной финтех-компании.</p>
+                <p>Знаю изнутри, как мыслят руководители и что влияет на их решения о повышении (потому что не только сам иду по этому пути, но и помогаю это делать своим сотрудникам).</p>
+                <p>Работал в реальном мире с несовершенными руководителями, токсичными коллегами и бюрократией. И достигал результата без блата и связей.</p>
+                <p>Автор научных статей, спикер международных конференций, куратор стартап-акселератора, финалист «Лидеры России 2021», марафонец.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section alt">
+        <div class="container">
+            <h2 class="section-title">Продуктовая линейка</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Лид-магнит (Бесплатно)</h3>
+                    <ul>
+                        <li>Гайд «Карьерный прорыв за 90 дней: от middle к руководителю»</li>
+                        <li>5 конкретных действий для выхода на новый уровень</li>
+                        <li>Готовые фразы для переговоров о повышении</li>
+                        <li>Матрица лидерских навыков</li>
+                        <li>Каналы поиска руководящих вакансий</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Трипвайер (390 ₽)</h3>
+                    <ul>
+                        <li>Telegram‑бот «Middle to Senior: Донеси свою ценность»</li>
+                        <li>Ежедневные задания и сценарии</li>
+                        <li>STAR‑ответы, кейсы, чек‑листы</li>
+                        <li>Бонус: аудио «Психология HR‑менеджера»</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Стратегическая сессия (6000 ₽/час)</h3>
+                    <ul>
+                        <li>Диагностика, план роста, анализ компаний</li>
+                        <li>Стратегия переговоров с работодателем</li>
+                        <li>Гарантия результата или возврат</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Почему финтех‑специалисты боятся делать карьеру (и как это преодолеть)</h2>
+            <div class="cards">
+                <div class="card"><h3>Синдром самозванца</h3><p>78% руководителей в IT испытывали его на старте. Расскажу, как превратить его в конкурентное преимущество.</p></div>
+                <div class="card"><h3>Все позиции заняты</h3><p>Научу создавать позиции под себя и договариваться о «горизонтальном» повышении.</p></div>
+                <div class="card"><h3>Не умею управлять людьми</h3><p>5 управленческих приемов, которые можно освоить за 30 дней без команды.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>Прекратите ждать повышения — создайте его сами</h2>
+            <p>Начните сейчас — переходите в Telegram и получайте доступ к материалам</p>
+            <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" class="btn-primary">Перейти</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            © 2024 Андрей Лагунов
+        </div>
+    </footer>
+</body>
+</html>
+
