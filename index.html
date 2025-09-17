@@ -155,8 +155,8 @@
             padding: 0;
             display: flex;
             align-items: center;
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
-            color: white;
+            background: white;
+            color: var(--primary);
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -185,12 +185,13 @@
             font-weight: 800;
             margin-bottom: 2rem;
             line-height: 1.1;
+            color: var(--primary);
         }
         
         .hero .subtitle {
             font-size: 1.3rem;
             margin-bottom: 2rem;
-            opacity: 0.9;
+            color: var(--text);
             font-weight: 400;
         }
         
@@ -241,6 +242,7 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
+            align-items: center;
         }
         
         .btn-primary {
@@ -254,6 +256,7 @@
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            order: 1;
         }
         
         .btn-primary:hover {
@@ -264,19 +267,20 @@
         
         .btn-secondary {
             background: transparent;
-            color: white;
-            border: 2px solid white;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
             padding: 14px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
             transition: var(--transition);
+            order: 2;
         }
         
         .btn-secondary:hover {
-            background: white;
-            color: var(--primary);
+            background: var(--text-light);
+            color: white;
         }
         
         /* Pain Points Section */
@@ -1168,15 +1172,12 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>От Middle до Senior<br>за 3-6 месяцев - это возможно</h1>
+                <h1>От Middle до Senior<br>за 6 месяцев<br>- это возможно</h1>
                 <p class="subtitle">Пошаговый план карьерного прорыва с повышением зарплаты на 30-100%</p>
-                <div class="expertise">
-                    Помогаю финтех и IT-специалистам middle+ преодолеть карьерный потолок и занять руководящие позиции. Без блата, политики и многолетнего ожидания
-                    <div class="quote-author">— Андрей Лагунов</div>
-                </div>
+                
                 <div class="hero-buttons">
-                    <a href="https://drive.google.com/uc?export=download&id=1boAiG_w-J4E3yDgWRWZCXB45Yv73aYzA" target="_blank" class="btn-primary">Получить бесплатный чек-лист "Готовности к переговорам"</a>
-                    <a href="course.html" class="btn-secondary">Узнать о практикуме</a>
+                    <a href="#consultation" class="btn-primary">Получить консультацию</a>
+                    <a href="course.html" class="btn-secondary">Подробнее о практикуме</a>
                 </div>
             </div>
         </div>
@@ -1329,7 +1330,7 @@
     </section>
 
     <!-- Consultation Section -->
-    <section class="consultation">
+    <section id="consultation" class="consultation">
         <div class="container">
             <div class="consultation-content">
                 <h2 class="section-title">Личная консультация</h2>
