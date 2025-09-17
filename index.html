@@ -1446,9 +1446,9 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2>Прекратите ждать повышения — создайте его сами</h2>
-            <p>Получите персональную стратегию карьерного роста и начните действовать уже сегодня</p>
-            <a href="#contact" class="btn-primary">Получить бесплатный гайд</a>
+            <h2>Готовы сделать карьерный прорыв?</h2>
+            <p>Присоединяйтесь к практикуму и получите план перехода от Middle к Senior за 7 дней</p>
+            <a href="https://t.me/career_lagunov_bot" target="_blank" class="btn-primary">Перейти в Telegram для прохождения практикума</a>
         </div>
     </section>
 
@@ -1491,36 +1491,10 @@
                     </div>
                 </div>
                 
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Ваше имя</label>
-                            <input type="text" id="name" class="form-control" placeholder="Как к вам обращаться?" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Для ответа вам" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="service">Интересующая услуга</label>
-                            <select id="service" class="form-control" required>
-                                <option value="">-- Выберите услугу --</option>
-                                <option value="consultation">Личная консультация (6000 ₽/час)</option>
-                                <option value="basic">Практикум "Базовый" (25000 ₽)</option>
-                                <option value="optimal">Практикум "Оптимальный" (45000 ₽)</option>
-                                <option value="premium">Практикум "Премиум" (75000 ₽)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Сообщение</label>
-                            <textarea id="message" class="form-control" placeholder="Расскажите о вашей ситуации и целях" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-primary">Отправить заявку</button>
-                    </form>
+                <div class="contact-form" style="text-align: center;">
+                    <h3 style="margin-bottom: 15px; color: var(--primary);">Перейти в Telegram для прохождения практикума</h3>
+                    <p class="section-subtitle" style="margin-bottom: 20px;">Откройте доступ к материалам и начните обучение</p>
+                    <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" class="btn-primary">Перейти в Telegram для прохождения практикума</a>
                 </div>
             </div>
         </div>
@@ -1562,8 +1536,8 @@
                     <h3>Telegram канал</h3>
                     <p>Подписывайтесь на канал "Карьера с Лагуновым"</p>
                     <div style="text-align: center;">
-                        <a href="https://t.me/career_lagunov" target="_blank" style="background: #0088cc; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-                            <i class="fab fa-telegram"></i> @career_lagunov
+                        <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" style="background: #0088cc; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
+                            <i class="fab fa-telegram"></i> Перейти в Telegram для прохождения практикума
                         </a>
                     </div>
                 </div>
@@ -1613,11 +1587,14 @@
             });
         });
         
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время.');
-        });
+        // Form submission (если форма присутствует)
+        const mainForm = document.querySelector('form');
+        if (mainForm) {
+            mainForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время.');
+            });
+        }
 
         // Intersection Observer for animations
         const observerOptions = {

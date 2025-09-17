@@ -176,6 +176,8 @@
             box-shadow: 0 15px 30px rgba(245, 158, 11, 0.3);
         }
         
+        /* Shiny button effect (not used now) */
+        
         .btn-secondary {
             background: transparent;
             color: white;
@@ -333,125 +335,6 @@
             color: var(--text-light);
         }
         
-        /* Pricing Section */
-        .pricing {
-            padding: 100px 0;
-            background: white;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 60px;
-        }
-        
-        .pricing-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            border: 2px solid transparent;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-        
-        .pricing-card.featured {
-            border-color: var(--accent);
-            transform: scale(1.05);
-        }
-        
-        .pricing-badge {
-            background: var(--accent);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        
-        .pricing-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--primary);
-        }
-        
-        .pricing-price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: 20px;
-        }
-        
-        .pricing-description {
-            color: var(--text-light);
-            margin-bottom: 30px;
-        }
-        
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        
-        .pricing-features li {
-            padding: 8px 0;
-            position: relative;
-            padding-left: 25px;
-        }
-        
-        .pricing-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success);
-            font-weight: bold;
-        }
-        
-        /* Guarantee Section */
-        .guarantee {
-            padding: 80px 0;
-            background: var(--light);
-            text-align: center;
-        }
-        
-        .guarantee-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .guarantee-icon {
-            width: 100px;
-            height: 100px;
-            background: var(--success);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 30px;
-            color: white;
-            font-size: 3rem;
-        }
-        
-        .guarantee h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .guarantee p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 30px;
-        }
         
         /* CTA Section */
         .cta-section {
@@ -631,14 +514,9 @@
                 gap: 40px;
             }
             
-            .pricing-grid,
             .days-grid,
             .benefits-grid {
                 grid-template-columns: 1fr;
-            }
-            
-            .pricing-card.featured {
-                transform: none;
             }
         }
         
@@ -674,7 +552,6 @@
                     <a href="index.html">Главная</a>
                     <a href="#structure">Структура</a>
                     <a href="#benefits">Преимущества</a>
-                    <a href="#pricing">Тарифы</a>
                     <a href="#contact">Контакты</a>
                 </nav>
                 <a href="#contact" class="cta-btn">Записаться</a>
@@ -692,7 +569,7 @@
                     <strong>За 7 дней получите:</strong> готовые инструменты для переговоров с руководством, персональную стратегию под вашего руководителя и четкий план перехода на следующий уровень
                 </div>
                 <div class="hero-buttons">
-                    <a href="#pricing" class="btn-primary">Выбрать тариф</a>
+                    <a href="#contact" class="btn-primary">Записаться на практикум</a>
                     <a href="#structure" class="btn-secondary">Посмотреть программу</a>
                 </div>
             </div>
@@ -844,156 +721,17 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
-        <div class="container">
-            <h2 class="section-title">Выберите подходящий тариф</h2>
-            <p class="section-subtitle">Доступ к практикуму с разным уровнем поддержки</p>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-title">Базовый</div>
-                    <div class="pricing-price">25 000 ₽</div>
-                    <p class="pricing-description">Доступ к 7-дневному практикуму с самостоятельным прохождением</p>
-                    <ul class="pricing-features">
-                        <li>7 модулей практикума</li>
-                        <li>Готовые шаблоны и инструменты</li>
-                        <li>Чек-листы для самопроверки</li>
-                        <li>Доступ к материалам на 3 месяца</li>
-                        <li>Чат с участниками курса</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary">Выбрать тариф</a>
-                </div>
-                
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">Популярный</div>
-                    <div class="pricing-title">Оптимальный</div>
-                    <div class="pricing-price">45 000 ₽</div>
-                    <p class="pricing-description">Практикум + персональные консультации для максимального результата</p>
-                    <ul class="pricing-features">
-                        <li>Все из тарифа Базовый</li>
-                        <li>3 персональные консультации</li>
-                        <li>Разбор вашего резюме и профиля</li>
-                        <li>Персональный план развития</li>
-                        <li>Доступ к материалам на 6 месяцев</li>
-                        <li>Закрытые вебинары с экспертами</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary">Выбрать тариф</a>
-                </div>
-                
-                <div class="pricing-card">
-                    <div class="pricing-title">Премиум</div>
-                    <div class="pricing-price">75 000 ₽</div>
-                    <p class="pricing-description">Максимальная поддержка до достижения результата</p>
-                    <ul class="pricing-features">
-                        <li>Все из тарифа Оптимальный</li>
-                        <li>6 персональных консультаций</li>
-                        <li>Подготовка к собеседованиям</li>
-                        <li>Переговорное сопровождение</li>
-                        <li>Пожизненный доступ к материалам</li>
-                        <li>Личная рекомендация от Андрея</li>
-                    </ul>
-                    <a href="#contact" class="btn-primary">Выбрать тариф</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Guarantee Section -->
-    <section class="guarantee">
-        <div class="container">
-            <div class="guarantee-content">
-                <div class="guarantee-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h2>Гарантия результата</h2>
-                <p>Если через 6 месяцев следования плану вы не получите повышение или предложение на руководящую позицию — возвращаю 100% стоимости</p>
-                <a href="#contact" class="btn-primary">Начать практикум</a>
-            </div>
-        </div>
-    </section>
 
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <h2>Готовы сделать карьерный прорыв?</h2>
             <p>Присоединяйтесь к практикуму и получите план перехода от Middle к Senior за 7 дней</p>
-            <a href="#contact" class="btn-primary">Записаться на практикум</a>
+            <a href="https://t.me/career_lagunov_bot" target="_blank" class="btn-primary">Перейти в Telegram для прохождения практикума</a>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h2>Записаться на практикум</h2>
-                    <p>Выберите подходящий тариф и начните свой путь к карьерному росту уже сегодня</p>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p><a href="mailto:a.d.lagunov@gmail.com" style="color: var(--secondary); text-decoration: none;">a.d.lagunov@gmail.com</a></p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-telegram"></i>
-                        </div>
-                        <div>
-                            <h4>Telegram</h4>
-                            <p><a href="https://t.me/career_lagunov_bot" target="_blank" style="color: var(--secondary); text-decoration: none;">@career_lagunov_bot</a></p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div>
-                            <h4>Начало</h4>
-                            <p>Практикум начинается сразу после оплаты</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Ваше имя</label>
-                            <input type="text" id="name" class="form-control" placeholder="Как к вам обращаться?" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" placeholder="Для связи с вами" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="tariff">Выберите тариф</label>
-                            <select id="tariff" class="form-control" required>
-                                <option value="">-- Выберите тариф --</option>
-                                <option value="basic">Базовый (25000 ₽)</option>
-                                <option value="optimal">Оптимальный (45000 ₽)</option>
-                                <option value="premium">Премиум (75000 ₽)</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Дополнительная информация</label>
-                            <textarea id="message" class="form-control" placeholder="Расскажите о вашей текущей ситуации и целях"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn-primary">Записаться на практикум</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+    
 
     <!-- Footer -->
     <footer class="footer">
@@ -1015,24 +753,20 @@
                     <p><a href="index.html">Главная</a></p>
                     <p><a href="#structure">Структура курса</a></p>
                     <p><a href="#benefits">Преимущества</a></p>
-                    <p><a href="#pricing">Тарифы</a></p>
                     <p><a href="#contact">Контакты</a></p>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Практикум</h3>
                     <p><a href="#structure">Программа курса</a></p>
-                    <p><a href="#pricing">Тариф "Базовый"</a></p>
-                    <p><a href="#pricing">Тариф "Оптимальный"</a></p>
-                    <p><a href="#pricing">Тариф "Премиум"</a></p>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Telegram канал</h3>
                     <p>Подписывайтесь на канал "Карьера с Лагуновым"</p>
                     <div style="text-align: center;">
-                        <a href="https://t.me/career_lagunov" target="_blank" style="background: #0088cc; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-                            <i class="fab fa-telegram"></i> @career_lagunov
+                        <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" style="background: #0088cc; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
+                            <i class="fab fa-telegram"></i> Перейти в Telegram для прохождения практикума
                         </a>
                     </div>
                 </div>
@@ -1062,11 +796,14 @@
             });
         });
 
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время для подтверждения записи на практикум.');
-        });
+        // Form submission (если форма присутствует)
+        const courseForm = document.querySelector('form');
+        if (courseForm) {
+            courseForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время для подтверждения записи на практикум.');
+            });
+        }
 
         // Intersection Observer for animations
         const observerOptions = {
@@ -1083,7 +820,7 @@
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.day-card, .benefit-card, .pricing-card').forEach(el => {
+        document.querySelectorAll('.day-card, .benefit-card').forEach(el => {
             observer.observe(el);
         });
     </script>
