@@ -1368,6 +1368,18 @@
             /* Career Track Mobile */
             .career-track {
                 padding: 60px 0;
+                position: relative;
+            }
+            
+            .career-track::before {
+                content: '';
+                position: absolute;
+                left: 30px;
+                top: 0;
+                bottom: 0;
+                width: 3px;
+                background: linear-gradient(180deg, var(--primary), var(--accent));
+                z-index: 1;
             }
             
             .career-timeline {
@@ -1377,13 +1389,7 @@
             }
             
             .career-timeline::before {
-                display: block;
-                left: 20px;
-                right: auto;
-                top: 0;
-                bottom: 0;
-                width: 2px;
-                background: linear-gradient(180deg, var(--primary), var(--accent));
+                display: none;
             }
             
             .career-item {
@@ -1393,7 +1399,9 @@
                 padding: 15px;
                 min-height: auto;
                 margin: 0 0 20px 0;
-                margin-left: 30px;
+                margin-left: 50px;
+                position: relative;
+                z-index: 2;
             }
             
             .company-logo {
@@ -1581,10 +1589,8 @@
             <i class="fas fa-times"></i>
         </div>
         <a href="#about">Обо мне</a>
-        <a href="#services">Услуги</a>
         <a href="#results">Результаты</a>
         <a href="#testimonials">Отзывы</a>
-        <a href="#contact">Контакты</a>
     </div>
 
     <!-- Hero Section -->
