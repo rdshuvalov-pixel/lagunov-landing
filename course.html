@@ -102,7 +102,9 @@
         
         /* Hero Section */
         .hero {
-            padding: 150px 0 100px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             text-align: center;
@@ -500,6 +502,11 @@
                 display: none;
             }
             
+            .hero {
+                height: 100vh;
+                padding: 20px 0;
+            }
+            
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -517,6 +524,22 @@
             .days-grid,
             .benefits-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Extra Small Devices */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero .hook {
+                font-size: 1rem;
+                padding: 15px;
             }
         }
         
@@ -550,11 +573,9 @@
                 <a href="index.html" class="logo">Андрей Лагунов</a>
                 <nav class="nav">
                     <a href="index.html">Главная</a>
-                    <a href="#structure">Структура</a>
-                    <a href="#benefits">Преимущества</a>
-                    <a href="#contact">Контакты</a>
+                    <a href="#structure">Структура практикума</a>
                 </nav>
-                <a href="#contact" class="cta-btn">Записаться</a>
+                <a href="#contact" class="cta-btn">Начать прохождение практикума</a>
             </div>
         </div>
     </header>
@@ -564,13 +585,68 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Практикум "Middle to Senior"</h1>
-                <p class="subtitle">7 дней практических заданий для карьерного прорыва</p>
-                <div class="hook">
-                    <strong>За 7 дней получите:</strong> готовые инструменты для переговоров с руководством, персональную стратегию под вашего руководителя и четкий план перехода на следующий уровень
-                </div>
+                <p class="subtitle">Готовые инструменты для переговоров с руководством, персональную стратегию под вашего руководителя и четкий план перехода на следующий уровень</p>
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn-primary">Записаться на практикум</a>
+                    <a href="#contact" class="btn-primary">Начать практикум</a>
                     <a href="#structure" class="btn-secondary">Посмотреть программу</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Benefits Section -->
+     <section id="benefits" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Что вы получите</h2>
+            <p class="section-subtitle">Конкретные инструменты и результаты для карьерного роста</p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="benefit-title">Готовые инструменты</h3>
+                    <p class="benefit-description">Шаблоны отчетов, скрипты переговоров, чек-листы и презентации для немедленного использования</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="benefit-title">Персональная стратегия</h3>
+                    <p class="benefit-description">Индивидуальный подход под тип вашего руководителя и специфику вашей компании</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-target"></i>
+                    </div>
+                    <h3 class="benefit-title">Четкий план действий</h3>
+                    <p class="benefit-description">Пошаговый план перехода от Middle к Senior с конкретными сроками и метриками</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="benefit-title">Готовые аргументы</h3>
+                    <p class="benefit-description">Убедительные аргументы для разговора о повышении с учетом ваших достижений</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="benefit-title">Расширение влияния</h3>
+                    <p class="benefit-description">Стратегия горизонтального влияния для повышения видимости в компании</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="benefit-title">Быстрый результат</h3>
+                    <p class="benefit-description">Первые результаты уже через 7 дней, значительный прогресс за 90 дней</p>
                 </div>
             </div>
         </div>
@@ -663,70 +739,13 @@
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section id="benefits" class="benefits">
-        <div class="container">
-            <h2 class="section-title">Что вы получите</h2>
-            <p class="section-subtitle">Конкретные инструменты и результаты для карьерного роста</p>
-            
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 class="benefit-title">Готовые инструменты</h3>
-                    <p class="benefit-description">Шаблоны отчетов, скрипты переговоров, чек-листы и презентации для немедленного использования</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-user-tie"></i>
-                    </div>
-                    <h3 class="benefit-title">Персональная стратегия</h3>
-                    <p class="benefit-description">Индивидуальный подход под тип вашего руководителя и специфику вашей компании</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-target"></i>
-                    </div>
-                    <h3 class="benefit-title">Четкий план действий</h3>
-                    <p class="benefit-description">Пошаговый план перехода от Middle к Senior с конкретными сроками и метриками</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h3 class="benefit-title">Готовые аргументы</h3>
-                    <p class="benefit-description">Убедительные аргументы для разговора о повышении с учетом ваших достижений</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3 class="benefit-title">Расширение влияния</h3>
-                    <p class="benefit-description">Стратегия горизонтального влияния для повышения видимости в компании</p>
-                </div>
-                
-                <div class="benefit-card">
-                    <div class="benefit-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3 class="benefit-title">Быстрый результат</h3>
-                    <p class="benefit-description">Первые результаты уже через 7 дней, значительный прогресс за 90 дней</p>
-                </div>
-            </div>
-        </div>
-    </section>
+   
 
 
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2>Готовы сделать карьерный прорыв?</h2>
-            <p>Присоединяйтесь к практикуму и получите план перехода от Middle к Senior за 7 дней</p>
+            <h2>Вы можете начать свой карьерный путь с личной консультации</h2>
             <a href="https://t.me/career_lagunov_bot" target="_blank" class="btn-primary">Перейти в Telegram для прохождения практикума</a>
         </div>
     </section>
@@ -739,26 +758,20 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Андрей Лагунов</h3>
-                    <p>Карьерный консультант, помогающий профессионалам расти от Middle до Senior и выше.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-telegram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
+                    <p>Карьерный консультант, помогающий профессионалам расти</p>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Навигация</h3>
-                    <p><a href="index.html">Главная</a></p>
-                    <p><a href="#structure">Структура курса</a></p>
-                    <p><a href="#benefits">Преимущества</a></p>
-                    <p><a href="#contact">Контакты</a></p>
+                    <p><a href="index.html#about">Обо мне</a></p>
+                    <p><a href="index.html#results">Результаты</a></p>
+                    <p><a href="index.html#testimonials">Отзывы</a></p>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Практикум</h3>
-                    <p><a href="#structure">Программа курса</a></p>
+                    <h3>Услуги</h3>
+                    <p><a href="index.html#consultation">Личная консультация</a></p>
+                    <p><a href="index.html#services">Практикум карьерного роста</a></p>
                 </div>
                 
                 <div class="footer-section">
@@ -766,14 +779,14 @@
                     <p>Подписывайтесь на канал "Карьера с Лагуновым"</p>
                     <div style="text-align: center;">
                         <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" style="background: #0088cc; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
-                            <i class="fab fa-telegram"></i> Перейти в Telegram для прохождения практикума
+                            <i class="fab fa-telegram"></i> Перейти в Telegram
                         </a>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Андрей Лагунов. Все права защищены.</p>
+                <p>&copy; 2018-2024 Андрей Лагунов. Все права защищены.</p>
             </div>
         </div>
     </footer>
