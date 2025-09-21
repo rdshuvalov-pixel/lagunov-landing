@@ -286,7 +286,7 @@
         /* Pain Points Section */
         .pain-points {
             padding: 100px 0;
-            background: var(--light);
+            background: #f1f5f9;
         }
         
         .section-title {
@@ -338,14 +338,19 @@
         /* Expertise Section */
         .expertise {
             padding: 100px 0;
-            background: var(--light);
+            background: white;
         }
         
         .expertise-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
-            align-items: center;
+            align-items: start;
+        }
+        
+        .achievements {
+            grid-column: 1 / -1;
+            margin-top: 40px;
         }
         
         .expertise-text h2 {
@@ -353,6 +358,13 @@
             font-weight: 800;
             margin-bottom: 1.5rem;
             color: var(--primary);
+        }
+        
+        .expertise-text h2 .highlight {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: 3px;
+            text-underline-offset: 4px;
         }
         
         .expertise-text p {
@@ -588,6 +600,103 @@
         
         .consultation-cta {
             text-align: center;
+        }
+        
+        /* Career Track Section */
+        .career-track {
+            padding: 80px 0;
+            background: var(--light);
+        }
+        
+        .career-timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            margin-top: 60px;
+            padding: 40px 0;
+        }
+        
+        .career-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            z-index: 1;
+        }
+        
+        .career-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            max-width: 200px;
+        }
+        
+        .career-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .company-logo {
+            margin-bottom: 15px;
+        }
+        
+        .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
+            margin: 0 auto;
+        }
+        
+        .logo-placeholder.sberbank {
+            background: linear-gradient(135deg, #21a038, #1e8b32);
+        }
+        
+        .logo-placeholder.gazprombank {
+            background: linear-gradient(135deg, #0066cc, #004499);
+        }
+        
+        .logo-placeholder.rshb {
+            background: linear-gradient(135deg, #ff6b35, #e55a2b);
+        }
+        
+        .logo-placeholder.moex {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+        }
+        
+        .logo-placeholder.fingular {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+        }
+        
+        .career-info h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .career-info p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.4;
+            margin: 0;
         }
         
         /* Results Section */
@@ -917,35 +1026,113 @@
             /* Pain Points Mobile */
             .pain-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 12px;
             }
             
             .pain-card {
-                padding: 20px;
+                padding: 12px;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+            
+            .pain-card:hover {
+                transform: none;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             }
             
             .pain-card h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0;
+                color: var(--primary);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .pain-card h3::after {
+                content: '+';
                 font-size: 1.2rem;
+                font-weight: 300;
+                transition: var(--transition);
+            }
+            
+            .pain-card.expanded h3::after {
+                content: '−';
+            }
+            
+            .pain-card p {
+                display: none;
+                font-size: 0.85rem;
+                margin-top: 8px;
+                color: var(--text-light);
+                line-height: 1.4;
+            }
+            
+            .pain-card.expanded p {
+                display: block;
             }
             
             /* Expertise Mobile */
             .expertise-content {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 20px;
+            }
+            
+            .expertise-text {
+                order: 1;
             }
             
             .expertise-text h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+            
+            .expertise-text p {
+                text-align: center;
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .expertise-image {
+                order: 2;
+                text-align: center;
+            }
+            
+            .achievements {
+                order: 3;
+                margin-top: 20px;
             }
             
             .achievement {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
+                flex-direction: row;
+                text-align: left;
+                gap: 15px;
+                margin-bottom: 15px;
+                align-items: flex-start;
             }
             
             .achievement-icon {
-                margin: 0 auto;
+                margin: 0;
+                flex-shrink: 0;
+                width: 20%;
+                max-width: 50px;
+                height: 50px;
+            }
+            
+            .achievement-text {
+                width: 80%;
+                flex: 1;
+            }
+            
+            .achievement-text h4 {
+                font-size: 1rem;
+                margin-bottom: 3px;
+            }
+            
+            .achievement-text p {
+                font-size: 0.85rem;
+                margin: 0;
             }
             
             /* Course Hook Mobile */
@@ -1066,6 +1253,48 @@
             .feature-block li {
                 font-size: 0.9rem;
             }
+            
+            /* Career Track Mobile */
+            .career-track {
+                padding: 60px 0;
+            }
+            
+            .career-timeline {
+                flex-direction: column;
+                gap: 30px;
+                padding: 20px 0;
+            }
+            
+            .career-timeline::before {
+                display: none;
+            }
+            
+            .career-item {
+                max-width: 100%;
+                flex-direction: row;
+                text-align: left;
+                padding: 15px;
+            }
+            
+            .company-logo {
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+            
+            .logo-placeholder {
+                width: 50px;
+                height: 50px;
+                font-size: 1rem;
+            }
+            
+            .career-info h3 {
+                font-size: 1rem;
+                margin-bottom: 5px;
+            }
+            
+            .career-info p {
+                font-size: 0.8rem;
+            }
         }
         
         /* Extra Small Devices */
@@ -1110,6 +1339,24 @@
             
             .consultation-price {
                 font-size: 1.8rem;
+            }
+            
+            .career-item {
+                padding: 12px;
+            }
+            
+            .logo-placeholder {
+                width: 45px;
+                height: 45px;
+                font-size: 0.9rem;
+            }
+            
+            .career-info h3 {
+                font-size: 0.9rem;
+            }
+            
+            .career-info p {
+                font-size: 0.75rem;
             }
         }
         
@@ -1228,54 +1475,114 @@
         <div class="container">
             <div class="expertise-content">
                 <div class="expertise-text">
-                    <h2>Как я прошел путь от рядового специалиста до CPO в топ-финтех компаний</h2>
-                    <p>10 лет назад я был обычным специалистом в Сбербанке с зарплатой 60 тыс. руб. Сегодня я отвечаю за продуктовую разработку международной финтех-компании и вышел на доход 1 млн.руб.</p>
-                    
-                    <div class="achievements">
-                        <div class="achievement">
-                            <div class="achievement-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="achievement-text">
-                                <h4>Путь от специалиста до CPO</h4>
-                                <p>Строил карьеру в российском финтехе (Газпромбанк, Россельхозбанк, Московская биржа)</p>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement">
-                            <div class="achievement-icon">
-                                <i class="fas fa-microphone"></i>
-                            </div>
-                            <div class="achievement-text">
-                                <h4>Эксперт и спикер</h4>
-                                <p>Спикер международных конференций по цифровой трансформации банков</p>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement">
-                            <div class="achievement-icon">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                            <div class="achievement-text">
-                                <h4>Финалист "Лидеры России"</h4>
-                                <p>Финалист конкурса «Лидеры России» 2021 в треке ИТ</p>
-                            </div>
-                        </div>
-                        
-                        <div class="achievement">
-                            <div class="achievement-icon">
-                                <i class="fas fa-running"></i>
-                            </div>
-                            <div class="achievement-text">
-                                <h4>Марафонец</h4>
-                                <p>Многократный участник забегов на марафонские дистанции</p>
-                            </div>
-                        </div>
-                    </div>
+                    <h2>Как я прошел путь <span class="highlight">от рядового специалиста до CPO</span> в топ-финтех компаний</h2>
+                    <p>Я - Андрей Лагунов. 10 лет назад я был обычным специалистом в Сбербанке с зарплатой 60 тыс. руб. Сегодня я отвечаю за продуктовую разработку международной финтех-компании и вышел на доход 1 млн.руб.</p>
                 </div>
                 
                 <div class="expertise-image">
                     <img src="foto_andrey.png" alt="Андрей Лагунов">
+                </div>
+                
+                <div class="achievements">
+                    <div class="achievement">
+                        <div class="achievement-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="achievement-text">
+                            <h4>Путь от специалиста до CPO</h4>
+                            <p>Строил карьеру в российском финтехе (Газпромбанк, Россельхозбанк, Московская биржа)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement">
+                        <div class="achievement-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <div class="achievement-text">
+                            <h4>Эксперт и спикер</h4>
+                            <p>Спикер международных конференций по цифровой трансформации банков</p>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-text">
+                            <h4>Финалист "Лидеры России"</h4>
+                            <p>Финалист конкурса «Лидеры России» 2021 в треке ИТ</p>
+                        </div>
+                    </div>
+                    
+                    <div class="achievement">
+                        <div class="achievement-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <div class="achievement-text">
+                            <h4>Марафонец</h4>
+                            <p>Многократный участник забегов на марафонские дистанции</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Track Section -->
+    <section class="career-track">
+        <div class="container">
+            <h2 class="section-title">Карьерный путь</h2>
+            <p class="section-subtitle">От рядового специалиста до CPO в топ-финтех компаниях</p>
+            
+            <div class="career-timeline">
+                <div class="career-item">
+                    <div class="company-logo">
+                        <div class="logo-placeholder sberbank">СБ</div>
+                    </div>
+                    <div class="career-info">
+                        <h3>Сбербанк</h3>
+                        <p>Директор Департамента стандартов продаж и клиентского обслуживания в рознице</p>
+                    </div>
+                </div>
+                
+                <div class="career-item">
+                    <div class="company-logo">
+                        <div class="logo-placeholder gazprombank">ГПБ</div>
+                    </div>
+                    <div class="career-info">
+                        <h3>Газпромбанк</h3>
+                        <p>Директор Департамента стандартов продаж и клиентского обслуживания в рознице</p>
+                    </div>
+                </div>
+                
+                <div class="career-item">
+                    <div class="company-logo">
+                        <div class="logo-placeholder rshb">РСХБ</div>
+                    </div>
+                    <div class="career-info">
+                        <h3>Россельхозбанк</h3>
+                        <p>Управляющий директор Центра развития финансовых технологий</p>
+                    </div>
+                </div>
+                
+                <div class="career-item">
+                    <div class="company-logo">
+                        <div class="logo-placeholder moex">МБ</div>
+                    </div>
+                    <div class="career-info">
+                        <h3>Московская биржа</h3>
+                        <p>Руководитель бизнес-направления кредитования</p>
+                    </div>
+                </div>
+                
+                <div class="career-item">
+                    <div class="company-logo">
+                        <div class="logo-placeholder fingular">F</div>
+                    </div>
+                    <div class="career-info">
+                        <h3>Fingular</h3>
+                        <p>Chief Product Owner рынка APAC</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1613,6 +1920,20 @@
         // Observe elements for animation
         document.querySelectorAll('.pain-card, .service-card, .testimonial-card, .result-card').forEach(el => {
             observer.observe(el);
+        });
+        
+        // Toggle pain point descriptions on mobile
+        function togglePainPoint(card) {
+            card.classList.toggle('expanded');
+        }
+        
+        // Add click handlers to pain cards on mobile
+        document.querySelectorAll('.pain-card').forEach(card => {
+            card.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    togglePainPoint(this);
+                }
+            });
         });
     </script>
 </body>
