@@ -1374,9 +1374,10 @@
             .career-track::before {
                 content: '';
                 position: absolute;
-                left: 30px;
-                top: 0;
-                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                top: 20px;
+                bottom: 20px;
                 width: 3px;
                 background: linear-gradient(180deg, var(--primary), var(--accent));
                 z-index: 1;
@@ -1398,8 +1399,7 @@
                 text-align: left;
                 padding: 15px;
                 min-height: auto;
-                margin: 0 0 20px 0;
-                margin-left: 50px;
+                margin: 0 auto 20px auto;
                 position: relative;
                 z-index: 2;
             }
