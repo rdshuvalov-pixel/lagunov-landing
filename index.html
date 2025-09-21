@@ -652,37 +652,17 @@
             margin-bottom: 15px;
         }
         
-        .logo-placeholder {
+        .company-logo-img {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: white;
+            object-fit: cover;
+            object-position: center;
             margin: 0 auto;
-        }
-        
-        .logo-placeholder.sberbank {
-            background: linear-gradient(135deg, #21a038, #1e8b32);
-        }
-        
-        .logo-placeholder.gazprombank {
-            background: linear-gradient(135deg, #0066cc, #004499);
-        }
-        
-        .logo-placeholder.rshb {
-            background: linear-gradient(135deg, #ff6b35, #e55a2b);
-        }
-        
-        .logo-placeholder.moex {
-            background: linear-gradient(135deg, #2c3e50, #34495e);
-        }
-        
-        .logo-placeholder.fingular {
-            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            display: block;
+            background: white;
+            padding: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
         .career-info h3 {
@@ -1281,10 +1261,10 @@
                 margin-right: 15px;
             }
             
-            .logo-placeholder {
+            .company-logo-img {
                 width: 50px;
                 height: 50px;
-                font-size: 1rem;
+                padding: 6px;
             }
             
             .career-info h3 {
@@ -1345,10 +1325,10 @@
                 padding: 12px;
             }
             
-            .logo-placeholder {
+            .company-logo-img {
                 width: 45px;
                 height: 45px;
-                font-size: 0.9rem;
+                padding: 5px;
             }
             
             .career-info h3 {
@@ -1537,7 +1517,7 @@
             <div class="career-timeline">
                 <div class="career-item">
                     <div class="company-logo">
-                        <div class="logo-placeholder sberbank">СБ</div>
+                        <img src="Лого Сбер.png" alt="Сбербанк" class="company-logo-img">
                     </div>
                     <div class="career-info">
                         <h3>Сбербанк</h3>
@@ -1547,7 +1527,7 @@
                 
                 <div class="career-item">
                     <div class="company-logo">
-                        <div class="logo-placeholder gazprombank">ГПБ</div>
+                        <img src="Лого Газпромбанк.png" alt="Газпромбанк" class="company-logo-img">
                     </div>
                     <div class="career-info">
                         <h3>Газпромбанк</h3>
@@ -1557,7 +1537,7 @@
                 
                 <div class="career-item">
                     <div class="company-logo">
-                        <div class="logo-placeholder rshb">РСХБ</div>
+                        <img src="Лого Россельхозбанк.png" alt="Россельхозбанк" class="company-logo-img">
                     </div>
                     <div class="career-info">
                         <h3>Россельхозбанк</h3>
@@ -1567,7 +1547,7 @@
                 
                 <div class="career-item">
                     <div class="company-logo">
-                        <div class="logo-placeholder moex">МБ</div>
+                        <img src="Лого Мосбиржа.jpg" alt="Московская биржа" class="company-logo-img">
                     </div>
                     <div class="career-info">
                         <h3>Московская биржа</h3>
@@ -1577,7 +1557,7 @@
                 
                 <div class="career-item">
                     <div class="company-logo">
-                        <div class="logo-placeholder fingular">F</div>
+                        <img src="Лого Fingular.jpeg" alt="Fingular" class="company-logo-img">
                     </div>
                     <div class="career-info">
                         <h3>Fingular</h3>
