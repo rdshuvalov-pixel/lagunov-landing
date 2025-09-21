@@ -1078,7 +1078,9 @@
             }
             
             .mobile-menu-btn {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             
             /* Hero Section Mobile */
@@ -1379,7 +1381,12 @@
             }
             
             .career-timeline::before {
-                display: none;
+                display: block;
+                left: 20px;
+                right: 20px;
+                top: 0;
+                height: 2px;
+                background: linear-gradient(180deg, var(--primary), var(--accent));
             }
             
             .career-item {
@@ -1624,7 +1631,7 @@
                 </div>
                 
                 <div class="pain-card">
-                    <h3>Технические навыки не дают преимущества</h3>
+                    <h3>Hard skills не дают преимущества</h3>
                     <p>Боитесь, что технические навыки больше не дают конкурентного преимущества</p>
                 </div>
                 
@@ -1648,8 +1655,13 @@
                 <div class="expertise-text">
                     <h2>Как я прошел путь <span class="highlight">от рядового специалиста до CPO</span> в топ-финтех компаний</h2>
                     <p>Я - Андрей Лагунов. 10 лет назад я был обычным специалистом в Сбербанке с зарплатой 60 тыс. руб. Сегодня я отвечаю за продуктовую разработку международной финтех-компании и вышел на доход 1 млн.руб.</p>
-                    
-                    <div class="achievements">
+                </div>
+                
+                <div class="expertise-image">
+                    <img src="foto_andrey.png" alt="Андрей Лагунов">
+                </div>
+                
+                <div class="achievements">
                     <div class="achievement">
                         <div class="achievement-icon">
                             <i class="fas fa-chart-line"></i>
@@ -1690,10 +1702,6 @@
                         </div>
                     </div>
                     </div>
-                </div>
-                
-                <div class="expertise-image">
-                    <img src="foto_andrey.png" alt="Андрей Лагунов">
                 </div>
             </div>
         </div>
@@ -1795,7 +1803,7 @@
                     </div>
                     
                     <div class="consultation-cta">
-                        <a href="#contact" class="btn-primary">Забронировать консультацию</a>
+                        <a href="#contact" class="btn-primary">Забронировать<br>консультацию</a>
                     </div>
                 </div>
             </div>
@@ -1970,7 +1978,7 @@
         <div class="container">
             <h2>Готовы сделать карьерный прорыв?</h2>
             <p>Присоединяйтесь к практикуму и получите план перехода от Middle к Senior за 7 дней</p>
-            <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" class="btn-primary">Перейти в Telegram для прохождения практикума</a>
+            <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" class="btn-primary">Перейти в Telegram<br>для прохождения практикума</a>
         </div>
     </section>
 
