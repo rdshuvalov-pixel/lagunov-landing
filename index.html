@@ -349,8 +349,8 @@
         }
         
         .achievements {
-            grid-column: 1 / -1;
-            margin-top: 40px;
+            margin-top: 20px;
+            max-width: 600px;
         }
         
         .expertise-text h2 {
@@ -602,6 +602,110 @@
             text-align: center;
         }
         
+        /* Tutorial Section */
+        .tutorial {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .tutorial-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .tutorial-card {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+            border: 2px solid var(--accent);
+        }
+        
+        .tutorial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .tutorial-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .tutorial-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .tutorial-info h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .tutorial-description {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+        
+        .tutorial-features {
+            margin-bottom: 30px;
+        }
+        
+        .tutorial-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .tutorial-feature i {
+            color: var(--success);
+            margin-right: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .tutorial-cta {
+            text-align: center;
+        }
+        
+        .btn-tutorial {
+            background: #0088cc;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-tutorial:hover {
+            background: #006699;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3);
+        }
+        
+        .tutorial-note {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+        
         /* Career Track Section */
         .career-track {
             padding: 80px 0;
@@ -623,10 +727,10 @@
             content: '';
             position: absolute;
             top: 50%;
-            left: 0;
-            right: 0;
+            left: 10%;
+            right: 10%;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: linear-gradient(90deg, transparent, var(--primary), var(--accent), transparent);
             z-index: 1;
         }
         
@@ -1089,8 +1193,8 @@
             }
             
             .achievements {
-                order: 3;
-                margin-top: 20px;
+                margin-top: 15px;
+                max-width: 100%;
             }
             
             .achievement {
@@ -1286,6 +1390,43 @@
             .career-info p {
                 font-size: 0.8rem;
             }
+            
+            /* Tutorial Mobile */
+            .tutorial {
+                padding: 60px 0;
+            }
+            
+            .tutorial-card {
+                padding: 25px;
+                margin-top: 30px;
+            }
+            
+            .tutorial-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .tutorial-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .tutorial-info h3 {
+                font-size: 1.5rem;
+            }
+            
+            .tutorial-description {
+                font-size: 1rem;
+            }
+            
+            .tutorial-feature {
+                font-size: 0.9rem;
+            }
+            
+            .btn-tutorial {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
         }
         
         /* Extra Small Devices */
@@ -1348,6 +1489,27 @@
             
             .career-info p {
                 font-size: 0.75rem;
+            }
+            
+            .tutorial-card {
+                padding: 20px;
+            }
+            
+            .tutorial-info h3 {
+                font-size: 1.3rem;
+            }
+            
+            .tutorial-description {
+                font-size: 0.9rem;
+            }
+            
+            .tutorial-feature {
+                font-size: 0.85rem;
+            }
+            
+            .btn-tutorial {
+                padding: 10px 20px;
+                font-size: 0.9rem;
             }
         }
         
@@ -1468,20 +1630,15 @@
                 <div class="expertise-text">
                     <h2>Как я прошел путь <span class="highlight">от рядового специалиста до CPO</span> в топ-финтех компаний</h2>
                     <p>Я - Андрей Лагунов. 10 лет назад я был обычным специалистом в Сбербанке с зарплатой 60 тыс. руб. Сегодня я отвечаю за продуктовую разработку международной финтех-компании и вышел на доход 1 млн.руб.</p>
-                </div>
-                
-                <div class="expertise-image">
-                    <img src="foto_andrey.png" alt="Андрей Лагунов">
-                </div>
-                
-                <div class="achievements">
+                    
+                    <div class="achievements">
                     <div class="achievement">
                         <div class="achievement-icon">
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <div class="achievement-text">
                             <h4>Путь от специалиста до CPO</h4>
-                            <p>Строил карьеру в российском финтехе (Газпромбанк, Россельхозбанк, Московская биржа)</p>
+                            <p>Строил карьеру в российском финтехе (Газпромбанк, Россельхозбанк, Мос биржа)</p>
                         </div>
                     </div>
                     
@@ -1514,6 +1671,11 @@
                             <p>Многократный участник забегов на марафонские дистанции</p>
                         </div>
                     </div>
+                    </div>
+                </div>
+                
+                <div class="expertise-image">
+                    <img src="foto_andrey.png" alt="Андрей Лагунов">
                 </div>
             </div>
         </div>
@@ -1558,10 +1720,10 @@
                 
                 <div class="career-item">
                     <div class="company-logo">
-                        <img src="Лого Мосбиржа.jpg" alt="Московская биржа" class="company-logo-img">
+                        <img src="Лого Мосбиржа.jpg" alt="Мос биржа" class="company-logo-img">
                     </div>
                     <div class="career-info">
-                        <h3>Московская биржа</h3>
+                        <h3>Мос биржа</h3>
                         <p>Руководитель бизнес-направления кредитования</p>
                     </div>
                 </div>
@@ -1579,17 +1741,60 @@
         </div>
     </section>
 
+     <!-- Consultation Section -->
+     <section id="consultation" class="consultation">
+        <div class="container">
+            <div class="consultation-content">
+                
+                <div class="consultation-card">
+                   
+                    <div class="container">
+                        <div class="consultation-content">
+                            <h2 class="section-title">Личная консультация</h2>
+                            <p class="section-subtitle">Индивидуальная 60-минутная сессия для решения вашего карьерного запроса</p>
+                            
+                    
+                  
+                    
+                    <div class="consultation-features">
+                        <div class="feature-block">
+                            <h4>Что включено:</h4>
+                            <ul>
+                                <li>Глубокая диагностика карьерной ситуации и скрытых блоков</li>
+                                <li>Часовая персональная консультация, на которой мы разберем вашу текущую карьерную ситуацию и запрос и уже за одну сессию сформулируем решение</li>
+                                <li>Поддержка на 7 дней в чате Telegram чтобы обсуждать конкретные результаты внедрения по итогам сессии</li>
+                                <li>Бонусные материалы от меня по вашему запросу (гайды по переговорам и получению повышения, чек-листы и т.п.)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="feature-block">
+                            <h4>Гарантия:</h4>
+                            <p>Первые 15 мин встречи - бесплатно. Если мы вдруг взаимно поймём неэффективность встречи за первые 15 минут - то сессия бесплатно</p>
+                        </div>
+                    </div>
+                    <div class="consultation-header">
+                        <div class="consultation-price">6 000 ₽/час</div>
+                    </div>
+                    
+                    <div class="consultation-cta">
+                        <a href="#contact" class="btn-primary">Забронировать консультацию</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <!-- Course Hook Section -->
     <section id="services" class="services">
         <div class="container">
-            <h2 class="section-title">Практикум "Middle to Senior"</h2>
-            <p class="section-subtitle">7 дней практических заданий для карьерного прорыва</p>
+       
             
             <div class="course-hook">
                 <div class="hook-content">
                     <div class="hook-text">
-                        <h3>Готовы сделать карьерный прорыв за 7 дней?</h3>
-                        <p>Получите готовые инструменты для переговоров с руководством, персональную стратегию под вашего руководителя и четкий план перехода на следующий уровень.</p>
+                        <h1>Практикум Middle to Senior за 7 дней</h1>
+                        <p></br>7 дней практических заданий для карьерного прорыва. </br> Получите готовые инструменты для переговоров с руководством, персональную стратегию под вашего руководителя и четкий план перехода на следующий уровень.</p>
                         
                         <div class="hook-features">
                             <div class="feature-item">
@@ -1604,15 +1809,12 @@
                                 <i class="fas fa-check-circle"></i>
                                 <span>Персональная стратегия под вашего руководителя</span>
                             </div>
-                            <div class="feature-item">
-                                <i class="fas fa-check-circle"></i>
-                                <span>Гарантия результата или возврат денег</span>
-                            </div>
+                          
                         </div>
                         
                         <div class="hook-cta">
-                            <a href="course.html" class="btn-primary">Подробнее о курсе</a>
-                            <p class="hook-note">От 25 000 ₽ • Начинается сразу после оплаты</p>
+                            <a href="course.html" class="btn-primary">Сделать шаг в новую жизнь</a>
+                            
                         </div>
                     </div>
                     
@@ -1627,47 +1829,56 @@
         </div>
     </section>
 
-    <!-- Consultation Section -->
-    <section id="consultation" class="consultation">
+    <!-- Tutorial Section -->
+    <section class="tutorial">
         <div class="container">
-            <div class="consultation-content">
-                <h2 class="section-title">Личная консультация</h2>
-                <p class="section-subtitle">Индивидуальная 60-минутная сессия для решения вашего карьерного запроса</p>
+            <div class="tutorial-content">
+                <h2 class="section-title">Бесплатный туториал</h2>
+                <p class="section-subtitle">Начните с основ: пошаговое руководство по построению карьеры</p>
                 
-                <div class="consultation-card">
-                    <div class="consultation-header">
-                        <h3>Стратегическая сессия</h3>
-                        <div class="consultation-price">6 000 ₽/час</div>
-                    </div>
-                    
-                    <div class="consultation-description">
-                        <p>Глубокая диагностика карьерной ситуации и скрытых блоков</p>
-                    </div>
-                    
-                    <div class="consultation-features">
-                        <div class="feature-block">
-                            <h4>Что включено:</h4>
-                            <ul>
-                                <li>Часовая персональная консультация, на которой мы разберем вашу текущую карьерную ситуацию и запрос и уже за одну сессию сформулируем решение</li>
-                                <li>Поддержка на 7 дней в чате Telegram чтобы обсуждать конкретные результаты внедрения по итогам сессии</li>
-                                <li>Бонусные материалы от меня по вашему запросу (гайды по переговорам и получению повышения, чек-листы и т.п.)</li>
-                            </ul>
+                <div class="tutorial-card">
+                    <div class="tutorial-header">
+                        <div class="tutorial-icon">
+                            <i class="fas fa-download"></i>
                         </div>
-                        
-                        <div class="feature-block">
-                            <h4>Гарантия:</h4>
-                            <p>Первые 15 мин встречи - бесплатно. Если мы вдруг взаимно поймём неэффективность встречи за первые 15 минут - то сессия бесплатно</p>
+                        <div class="tutorial-info">
+                            <h3>Туториал "Как построить свою карьеру"</h3>
+                            <p class="tutorial-description">Полное руководство по карьерному росту от Middle до Senior позиций</p>
                         </div>
                     </div>
                     
-                    <div class="consultation-cta">
-                        <a href="#contact" class="btn-primary">Забронировать консультацию</a>
+                    <div class="tutorial-features">
+                        <div class="tutorial-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Пошаговый план карьерного развития</span>
+                        </div>
+                        <div class="tutorial-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Практические инструменты и чек-листы</span>
+                        </div>
+                        <div class="tutorial-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Примеры успешных кейсов</span>
+                        </div>
+                        <div class="tutorial-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Готовые шаблоны для переговоров</span>
+                        </div>
+                    </div>
+                    
+                    <div class="tutorial-cta">
+                        <a href="https://t.me/career_lagunov_bot" target="_blank" class="btn-tutorial">
+                            <i class="fab fa-telegram"></i>
+                            Получить туториал в Telegram
+                        </a>
+                        <p class="tutorial-note">Бесплатно • PDF формат • Скачать сразу</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+   
     <!-- Results Section -->
     <section id="results" class="results">
         <div class="container">
@@ -1677,21 +1888,16 @@
             <div class="results-grid">
                 <div class="result-card">
                     <div class="result-number">85%</div>
-                    <div class="result-text">клиентов повысили позицию в течение 6 месяцев</div>
+                    <div class="result-text">клиентов повысили позицию/доход в течение 6 месяцев</div>
                 </div>
                 
                 <div class="result-card">
-                    <div class="result-number">40-80%</div>
-                    <div class="result-text">рост дохода после прохождения программ</div>
+                    <div class="result-number">30+</div>
+                    <div class="result-text">подчинённых выросли в карьере под моим началом</div>
                 </div>
                 
                 <div class="result-card">
-                    <div class="result-number">50+</div>
-                    <div class="result-text">специалистов прошли мои программы</div>
-                </div>
-                
-                <div class="result-card">
-                    <div class="result-number">4.9/5</div>
+                    <div class="result-number">4.9</div>
                     <div class="result-text">средняя оценка качества консультаций</div>
                 </div>
             </div>
