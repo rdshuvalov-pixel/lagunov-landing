@@ -496,25 +496,12 @@
         .image-placeholder {
             width: 200px;
             height: 200px;
-            background: var(--gradient);
             border-radius: 50%;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: white;
-            text-align: center;
-        }
-        
-        .image-placeholder i {
-            font-size: 4rem;
-            margin-bottom: 15px;
-        }
-        
-        .image-placeholder p {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 0;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
         /* Consultation Section */
@@ -1495,10 +1482,6 @@
                 height: 120px;
             }
             
-            .image-placeholder i {
-                font-size: 2.5rem;
-            }
-            
             .consultation-card {
                 padding: 20px;
             }
@@ -1857,8 +1840,7 @@
                     
                     <div class="hook-image">
                         <div class="image-placeholder">
-                            <i class="fas fa-rocket"></i>
-                            <p>Карьерный рост</p>
+                            <img src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif" alt="Карьерный рост" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
                         </div>
                     </div>
                 </div>
