@@ -605,13 +605,15 @@
         /* Career Track Section */
         .career-track {
             padding: 80px 0;
-            background: var(--light);
+            background: #f8fafc;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
         }
         
         .career-timeline {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: stretch;
             position: relative;
             margin-top: 60px;
             padding: 40px 0;
@@ -641,6 +643,8 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
             max-width: 200px;
+            flex: 1;
+            margin: 0 10px;
         }
         
         .career-item:hover {
@@ -677,6 +681,11 @@
             color: var(--text-light);
             line-height: 1.4;
             margin: 0;
+            flex-grow: 1;
+        }
+        
+        .career-item {
+            min-height: 200px;
         }
         
         /* Results Section */
@@ -1254,6 +1263,8 @@
                 flex-direction: row;
                 text-align: left;
                 padding: 15px;
+                min-height: auto;
+                margin: 0 0 20px 0;
             }
             
             .company-logo {
