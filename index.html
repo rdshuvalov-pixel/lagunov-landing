@@ -1047,6 +1047,26 @@
             color: rgba(255, 255, 255, 0.7);
         }
         
+        .telegram-button {
+            margin-top: 15px;
+        }
+        
+        .btn-telegram {
+            background: #0088cc;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: var(--transition);
+        }
+        
+        .btn-telegram:hover {
+            background: #006699;
+            transform: translateY(-2px);
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .container {
@@ -1981,8 +2001,8 @@
                 <div class="footer-section">
                     <h3>Telegram канал</h3>
                     <p>Подписывайтесь на канал "Карьера с Лагуновым"</p>
-                    <div style="text-align: center;">
-                        <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" style="background: #0088cc; color: white; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: inline-block;">
+                    <div class="telegram-button">
+                        <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" class="btn-telegram">
                             <i class="fab fa-telegram"></i> Перейти в Telegram
                         </a>
                     </div>
