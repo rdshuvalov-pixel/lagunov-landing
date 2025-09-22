@@ -1654,6 +1654,8 @@
                 <button type="submit" class="btn-primary">Отправить заявку</button>
                 <div class="modal-note">Нажимая «Отправить», вы соглашаетесь с обработкой персональных данных</div>
             </form>
+            <!-- скрытый транспорт для кросс-доменной отправки без CORS -->
+            <iframe name="salebot_transport" style="display:none"></iframe>
         </div>
     </div>
 
@@ -2155,30 +2157,38 @@
         // Lead form submission -> Salebot
         const leadForm = document.getElementById('leadForm');
         const API_KEY = 'c85dbe3b5267d8474b16b41c74881ae4';
-        async function sendToSalebot(name, phone) {
-            // 1) Сохраняем переменные (опционально)
-            try {
-                await fetch(`https://chatter.salebot.pro/api/${API_KEY}/save_variables`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, phone })
-                });
-            } catch(_) {}
+        function sendToSalebot(name, phone) {
+            // Кросс-доменная отправка через скрытую форму + iframe (обход CORS)
+            return new Promise((resolve) => {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
+                form.target = 'salebot_transport';
+                form.style.display = 'none';
 
-            // 2) Создаем клиента/сделку через callback (минимальная регистрация заявки)
-            // Документация: см. функции API конструктора и callback `save_variables` / `callback`
-            // https://docs.salebot.pro/api-v-konstruktore-salebot.pro/api-konstruktora
-            const payload = {
-                name,
-                phone,
-                source: 'landing_lagunov_consultation'
-            };
-            const resp = await fetch(`https://chatter.salebot.pro/api/${API_KEY}/callback`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
+                const fName = document.createElement('input');
+                fName.name = 'name';
+                fName.value = name;
+                form.appendChild(fName);
+
+                const fPhone = document.createElement('input');
+                fPhone.name = 'phone';
+                fPhone.value = phone;
+                form.appendChild(fPhone);
+
+                const fSource = document.createElement('input');
+                fSource.name = 'source';
+                fSource.value = 'landing_lagunov_consultation';
+                form.appendChild(fSource);
+
+                document.body.appendChild(form);
+                // Считаем успешной через небольшой таймаут; сервер не блокирует запросы
+                const iframe = document.getElementsByName('salebot_transport')[0];
+                const onLoad = () => { iframe.removeEventListener('load', onLoad); resolve(true); form.remove(); };
+                iframe.addEventListener('load', onLoad);
+                setTimeout(() => { resolve(true); try { form.remove(); iframe.removeEventListener('load', onLoad); } catch(_){} }, 1000);
+                form.submit();
             });
-            return resp.ok;
         }
 
         if (leadForm) {
