@@ -1040,6 +1040,54 @@
             color: rgba(255, 255, 255, 0.7);
         }
         
+        /* Lead Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 20px;
+        }
+        .modal-overlay.active { display: flex; }
+        .modal {
+            width: 480px;
+            max-width: 92%;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            padding: 28px;
+        }
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        .modal-close {
+            background: transparent;
+            border: none;
+            font-size: 1.6rem;
+            line-height: 1;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        .modal .form-group { margin-bottom: 16px; }
+        .modal .form-control { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1rem; }
+        .modal .form-control:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+        .modal .btn-primary { width: 100%; }
+        .modal-note { margin-top: 10px; font-size: 0.8rem; color: var(--text-light); text-align: center; }
+        
         .telegram-button {
             margin-top: 15px;
         }
@@ -1329,6 +1377,9 @@
             .social-links {
                 justify-content: center;
             }
+            /* Modal mobile */
+            .modal { width: 100%; max-width: 100%; border-radius: 14px; padding: 22px; }
+            .modal-title { font-size: 1.2rem; }
             
             /* Section Titles Mobile */
             .section-title {
@@ -1583,6 +1634,28 @@
             </div>
         </div>
     </header>
+
+    <!-- Lead Modal -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+            <div class="modal-header">
+                <div class="modal-title" id="leadModalTitle">Запись на консультацию</div>
+                <button class="modal-close" id="leadModalClose" aria-label="Закрыть">×</button>
+            </div>
+            <form id="leadForm">
+                <div class="form-group">
+                    <label for="leadName">Имя</label>
+                    <input id="leadName" name="name" class="form-control" type="text" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label for="leadPhone">Телефон</label>
+                    <input id="leadPhone" name="phone" class="form-control" type="tel" inputmode="tel" placeholder="+7 999 123-45-67" required>
+                </div>
+                <button type="submit" class="btn-primary">Отправить заявку</button>
+                <div class="modal-note">Нажимая «Отправить», вы соглашаетесь с обработкой персональных данных</div>
+            </form>
+        </div>
+    </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu">
@@ -1978,7 +2051,7 @@
         <div class="container">
             <h2>Готовы сделать карьерный прорыв?</h2>
             <p>Присоединяйтесь к практикуму и получите план перехода от Middle к Senior за 7 дней</p>
-            <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" class="btn-primary">Записаться<br>на консультацию</a>
+            <a href="https://t.me/+_LEZnqSdtX45Yzcy" target="_blank" class="btn-primary">Перейти в Telegram<br>для прохождения практикума</a>
         </div>
     </section>
 
@@ -2061,12 +2134,72 @@
             });
         });
         
-        // Form submission (если форма присутствует)
-        const mainForm = document.querySelector('form');
-        if (mainForm) {
-            mainForm.addEventListener('submit', function(e) {
+        // Lead modal open/close
+        const leadModal = document.getElementById('leadModal');
+        const leadOpeners = [
+            ...document.querySelectorAll('.cta-btn[href="#contact"], .btn-primary[href="#consultation"]')
+        ];
+        const leadClose = document.getElementById('leadModalClose');
+
+        leadOpeners.forEach(btn => {
+            btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время.');
+                leadModal.classList.add('active');
+            });
+        });
+        leadClose.addEventListener('click', () => leadModal.classList.remove('active'));
+        leadModal.addEventListener('click', (e) => {
+            if (e.target === leadModal) leadModal.classList.remove('active');
+        });
+
+        // Lead form submission -> Salebot
+        const leadForm = document.getElementById('leadForm');
+        const API_KEY = 'c85dbe3b5267d8474b16b41c74881ae4';
+        async function sendToSalebot(name, phone) {
+            // 1) Сохраняем переменные (опционально)
+            try {
+                await fetch(`https://chatter.salebot.pro/api/${API_KEY}/save_variables`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, phone })
+                });
+            } catch(_) {}
+
+            // 2) Создаем клиента/сделку через callback (минимальная регистрация заявки)
+            // Документация: см. функции API конструктора и callback `save_variables` / `callback`
+            // https://docs.salebot.pro/api-v-konstruktore-salebot.pro/api-konstruktora
+            const payload = {
+                name,
+                phone,
+                source: 'landing_lagunov_consultation'
+            };
+            const resp = await fetch(`https://chatter.salebot.pro/api/${API_KEY}/callback`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+            return resp.ok;
+        }
+
+        if (leadForm) {
+            leadForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const name = document.getElementById('leadName').value.trim();
+                const phone = document.getElementById('leadPhone').value.trim();
+                if (!name || !phone) return;
+                
+                const submitBtn = leadForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Отправляем...';
+                try {
+                    const ok = await sendToSalebot(name, phone);
+                    submitBtn.textContent = ok ? 'Заявка отправлена' : 'Ошибка отправки';
+                    if (ok) setTimeout(() => { leadModal.classList.remove('active'); submitBtn.textContent = originalText; submitBtn.disabled = false; leadForm.reset(); }, 1200);
+                } catch (err) {
+                    submitBtn.textContent = 'Ошибка отправки';
+                    setTimeout(() => { submitBtn.textContent = originalText; submitBtn.disabled = false; }, 1200);
+                }
             });
         }
 
