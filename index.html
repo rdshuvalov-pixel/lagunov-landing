@@ -2181,6 +2181,12 @@
                 fSource.value = 'landing_lagunov_consultation';
                 form.appendChild(fSource);
 
+                // Требуется параметр message (см. ошибка и документация)
+                const fMessage = document.createElement('input');
+                fMessage.name = 'message';
+                fMessage.value = `Заявка на консультацию. Имя: ${name}. Телефон: ${phone}. Источник: landing.`;
+                form.appendChild(fMessage);
+
                 document.body.appendChild(form);
                 // Считаем успешной через небольшой таймаут; сервер не блокирует запросы
                 const iframe = document.getElementsByName('salebot_transport')[0];
