@@ -2157,55 +2157,76 @@
         // Lead form submission -> Salebot
         const leadForm = document.getElementById('leadForm');
         const API_KEY = 'c85dbe3b5267d8474b16b41c74881ae4';
+        function normalizePhone(raw) {
+            let digits = (raw || '').replace(/\D+/g, '');
+            if (digits.startsWith('8') && digits.length === 11) {
+                digits = '7' + digits.slice(1);
+            }
+            if (digits.startsWith('7') && digits.length === 11) {
+                return '+' + digits;
+            }
+            if (digits.startsWith('9') && digits.length === 10) {
+                return '+7' + digits;
+            }
+            if (!digits.startsWith('+')) return '+' + digits;
+            return digits;
+        }
+
         function sendToSalebot(name, phone) {
-            // Кросс-доменная отправка через скрытую форму + iframe (обход CORS)
+            // 1) Сначала фиксируем переменные клиента через save_variables
+            // 2) Затем создаем сделку через callback с create_order/state_id
             return new Promise((resolve) => {
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
-                form.target = 'salebot_transport';
-                form.style.display = 'none';
-
-                const fName = document.createElement('input');
-                fName.name = 'name';
-                fName.value = name;
-                form.appendChild(fName);
-
-                const fPhone = document.createElement('input');
-                fPhone.name = 'phone';
-                fPhone.value = phone;
-                form.appendChild(fPhone);
-
-                const fSource = document.createElement('input');
-                fSource.name = 'source';
-                fSource.value = 'landing_lagunov_consultation';
-                form.appendChild(fSource);
-
-                // Требуется параметр message (см. ошибка и документация)
-                const fMessage = document.createElement('input');
-                fMessage.name = 'message';
-                fMessage.value = `Заявка на консультацию. Имя: ${name}. Телефон: ${phone}. Источник: landing.`;
-                form.appendChild(fMessage);
-
-                // Создавать сделку автоматически (попадет на первый этап воронки по настройке CRM)
-                const fCreateOrder = document.createElement('input');
-                fCreateOrder.name = 'create_order';
-                fCreateOrder.value = '1';
-                form.appendChild(fCreateOrder);
-
-                // Кладем заявку сразу в указанный этап воронки
-                const fStateId = document.createElement('input');
-                fStateId.name = 'state_id';
-                fStateId.value = '66428062';
-                form.appendChild(fStateId);
-
-                document.body.appendChild(form);
-                // Считаем успешной через небольшой таймаут; сервер не блокирует запросы
                 const iframe = document.getElementsByName('salebot_transport')[0];
-                const onLoad = () => { iframe.removeEventListener('load', onLoad); resolve(true); form.remove(); };
-                iframe.addEventListener('load', onLoad);
-                setTimeout(() => { resolve(true); try { form.remove(); iframe.removeEventListener('load', onLoad); } catch(_){} }, 1000);
-                form.submit();
+                const makeForm = (action, fields) => {
+                    const f = document.createElement('form');
+                    f.method = 'POST';
+                    f.action = action;
+                    f.target = 'salebot_transport';
+                    f.style.display = 'none';
+                    Object.entries(fields).forEach(([k, v]) => {
+                        const inp = document.createElement('input');
+                        inp.name = k;
+                        inp.value = String(v);
+                        f.appendChild(inp);
+                    });
+                    document.body.appendChild(f);
+                    return f;
+                };
+
+                const safePhone = normalizePhone(phone);
+                const ts = Date.now();
+                const saveForm = makeForm(`https://chatter.salebot.pro/api/${API_KEY}/save_variables`, {
+                    name,
+                    phone: safePhone,
+                    _ts: ts
+                });
+
+                const cbFields = {
+                    name,
+                    phone: safePhone,
+                    source: 'landing_lagunov_consultation',
+                    message: `Заявка на консультацию. Имя: ${name}. Телефон: ${safePhone}. Источник: landing.`,
+                    create_order: '1',
+                    state_id: '66428062',
+                    _ts: ts
+                };
+                const cbForm = makeForm(`https://chatter.salebot.pro/api/${API_KEY}/callback`, cbFields);
+
+                const afterSave = () => {
+                    iframe.removeEventListener('load', afterSave);
+                    // небольшая задержка, чтобы переменные успели сохраниться
+                    setTimeout(() => {
+                        const afterCb = () => {
+                            iframe.removeEventListener('load', afterCb);
+                            try { saveForm.remove(); cbForm.remove(); } catch(_) {}
+                            resolve(true);
+                        };
+                        iframe.addEventListener('load', afterCb);
+                        cbForm.submit();
+                    }, 300);
+                };
+                iframe.addEventListener('load', afterSave);
+                saveForm.submit();
             });
         }
 
