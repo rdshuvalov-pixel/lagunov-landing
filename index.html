@@ -2173,60 +2173,37 @@
         }
 
         function sendToSalebot(name, phone) {
-            // 1) Сначала фиксируем переменные клиента через save_variables
-            // 2) Затем создаем сделку через callback с create_order/state_id
+            // Упрощаем: только callback (save_variables даёт 500 без контекста клиента)
             return new Promise((resolve) => {
                 const iframe = document.getElementsByName('salebot_transport')[0];
-                const makeForm = (action, fields) => {
-                    const f = document.createElement('form');
-                    f.method = 'POST';
-                    f.action = action;
-                    f.target = 'salebot_transport';
-                    f.style.display = 'none';
-                    Object.entries(fields).forEach(([k, v]) => {
-                        const inp = document.createElement('input');
-                        inp.name = k;
-                        inp.value = String(v);
-                        f.appendChild(inp);
-                    });
-                    document.body.appendChild(f);
-                    return f;
-                };
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
+                form.target = 'salebot_transport';
+                form.style.display = 'none';
 
                 const safePhone = normalizePhone(phone);
-                const ts = Date.now();
-                const saveForm = makeForm(`https://chatter.salebot.pro/api/${API_KEY}/save_variables`, {
-                    name,
-                    phone: safePhone,
-                    _ts: ts
-                });
-
-                const cbFields = {
-                    name,
+                const fields = {
+                    name: name,
                     phone: safePhone,
                     source: 'landing_lagunov_consultation',
                     message: `Заявка на консультацию. Имя: ${name}. Телефон: ${safePhone}. Источник: landing.`,
                     create_order: '1',
                     state_id: '66428062',
-                    _ts: ts
+                    _ts: Date.now()
                 };
-                const cbForm = makeForm(`https://chatter.salebot.pro/api/${API_KEY}/callback`, cbFields);
+                Object.entries(fields).forEach(([k,v]) => {
+                    const inp = document.createElement('input');
+                    inp.name = k;
+                    inp.value = String(v);
+                    form.appendChild(inp);
+                });
+                document.body.appendChild(form);
 
-                const afterSave = () => {
-                    iframe.removeEventListener('load', afterSave);
-                    // небольшая задержка, чтобы переменные успели сохраниться
-                    setTimeout(() => {
-                        const afterCb = () => {
-                            iframe.removeEventListener('load', afterCb);
-                            try { saveForm.remove(); cbForm.remove(); } catch(_) {}
-                            resolve(true);
-                        };
-                        iframe.addEventListener('load', afterCb);
-                        cbForm.submit();
-                    }, 300);
-                };
-                iframe.addEventListener('load', afterSave);
-                saveForm.submit();
+                const onLoad = () => { iframe.removeEventListener('load', onLoad); try { form.remove(); } catch(_){}; resolve(true); };
+                iframe.addEventListener('load', onLoad);
+                setTimeout(() => { resolve(true); try { form.remove(); iframe.removeEventListener('load', onLoad); } catch(_){} }, 1000);
+                form.submit();
             });
         }
 
