@@ -2187,6 +2187,18 @@
                 fMessage.value = `Заявка на консультацию. Имя: ${name}. Телефон: ${phone}. Источник: landing.`;
                 form.appendChild(fMessage);
 
+                // Создавать сделку автоматически (попадет на первый этап воронки по настройке CRM)
+                const fCreateOrder = document.createElement('input');
+                fCreateOrder.name = 'create_order';
+                fCreateOrder.value = '1';
+                form.appendChild(fCreateOrder);
+
+                // Кладем заявку сразу в указанный этап воронки
+                const fStateId = document.createElement('input');
+                fStateId.name = 'state_id';
+                fStateId.value = '66428062';
+                form.appendChild(fStateId);
+
                 document.body.appendChild(form);
                 // Считаем успешной через небольшой таймаут; сервер не блокирует запросы
                 const iframe = document.getElementsByName('salebot_transport')[0];
