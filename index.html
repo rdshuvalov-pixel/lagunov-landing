@@ -2296,8 +2296,10 @@
                 submitBtn.textContent = 'Отправляем...';
                 try {
                     const ok = await sendToSalebot(name, phone);
+                    console.log('Form submission result:', ok);
                     if (ok) {
                         // Показываем экран успеха
+                        console.log('Showing success screen');
                         leadForm.style.display = 'none';
                         document.getElementById('successScreen').classList.add('active');
                         setTimeout(() => { 
@@ -2309,10 +2311,12 @@
                             leadForm.reset(); 
                         }, 3000);
                     } else {
+                        console.log('Form submission failed');
                         submitBtn.textContent = 'Ошибка отправки';
                         setTimeout(() => { submitBtn.textContent = originalText; submitBtn.disabled = false; }, 2000);
                     }
                 } catch (err) {
+                    console.log('Form submission error:', err);
                     submitBtn.textContent = 'Ошибка отправки';
                     setTimeout(() => { submitBtn.textContent = originalText; submitBtn.disabled = false; }, 2000);
                 }
