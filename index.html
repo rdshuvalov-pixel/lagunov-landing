@@ -1088,6 +1088,45 @@
         .modal .btn-primary { width: 100%; text-align: center; }
         .modal-note { margin-top: 10px; font-size: 0.8rem; color: var(--text-light); text-align: center; }
         
+        /* Success screen */
+        .success-screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .success-screen.active {
+            display: flex;
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            animation: successPulse 0.6s ease-out;
+        }
+        .success-icon i {
+            font-size: 2.5rem;
+            color: white;
+        }
+        .success-text {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 500;
+            line-height: 1.4;
+        }
+        @keyframes successPulse {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
         .telegram-button {
             margin-top: 15px;
         }
@@ -1656,6 +1695,13 @@
                 <button type="submit" class="btn-primary">Отправить заявку</button>
                 <div class="modal-note">Нажимая «Отправить», вы соглашаетесь с обработкой персональных данных</div>
             </form>
+            
+            <div class="success-screen" id="successScreen">
+                <div class="success-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="success-text">Благодарю за заявку. Я свяжусь с тобой в ближайшее время</div>
+            </div>
             <!-- скрытый транспорт для кросс-доменной отправки без CORS -->
             <iframe name="salebot_transport" style="display:none"></iframe>
         </div>
@@ -2251,8 +2297,17 @@
                 try {
                     const ok = await sendToSalebot(name, phone);
                     if (ok) {
-                        submitBtn.textContent = 'Благодарю за заявку. Я свяжусь с тобой в ближайшее время';
-                        setTimeout(() => { leadModal.classList.remove('active'); submitBtn.textContent = originalText; submitBtn.disabled = false; leadForm.reset(); }, 3000);
+                        // Показываем экран успеха
+                        leadForm.style.display = 'none';
+                        document.getElementById('successScreen').classList.add('active');
+                        setTimeout(() => { 
+                            leadModal.classList.remove('active'); 
+                            leadForm.style.display = 'block';
+                            document.getElementById('successScreen').classList.remove('active');
+                            submitBtn.textContent = originalText; 
+                            submitBtn.disabled = false; 
+                            leadForm.reset(); 
+                        }, 3000);
                     } else {
                         submitBtn.textContent = 'Ошибка отправки';
                         setTimeout(() => { submitBtn.textContent = originalText; submitBtn.disabled = false; }, 2000);

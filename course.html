@@ -749,6 +749,12 @@
         html {
             scroll-behavior: smooth;
         }
+        
+        @keyframes successPulse {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -796,6 +802,14 @@
                 <button type="submit" class="btn-primary" style="width:100%;">Отправить заявку</button>
                 <div class="modal-note" style="margin-top:10px; font-size:0.8rem; color:#64748b; text-align:center;">Нажимая «Отправить», вы соглашаетесь с обработкой персональных данных</div>
             </form>
+            
+            <div class="success-screen" id="successScreen" style="display:none; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:40px 20px;">
+                <div class="success-icon" style="width:80px; height:80px; background:#10b981; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:30px; animation:successPulse 0.6s ease-out;">
+                    <i class="fas fa-check" style="font-size:2.5rem; color:white;"></i>
+                </div>
+                <div class="success-text" style="font-size:1.2rem; color:#1a1a1a; font-weight:500; line-height:1.4;">Благодарю за заявку. Я свяжусь с тобой в ближайшее время</div>
+            </div>
+            
             <iframe name="salebot_transport" style="display:none"></iframe>
         </div>
     </div>
@@ -1165,7 +1179,7 @@
             });
         }
         const lf = document.getElementById('leadForm');
-        if(lf){ lf.addEventListener('submit', async (e)=>{ e.preventDefault(); const name=document.getElementById('leadName').value.trim(); const phone=document.getElementById('leadPhone').value.trim(); if(!name||!phone) return; const btn=lf.querySelector('button[type="submit"]'); const t=btn.textContent; btn.disabled=true; btn.textContent='Отправляем...'; try{ const ok = await sendToSalebot(name, phone); if(ok){ btn.textContent='Благодарю за заявку. Я свяжусь с тобой в ближайшее время'; setTimeout(()=>{ leadModal.style.display='none'; btn.disabled=false; btn.textContent=t; lf.reset(); },3000);} else{ btn.textContent='Ошибка отправки'; setTimeout(()=>{ btn.disabled=false; btn.textContent=t; },2000);} } catch(_){ btn.textContent='Ошибка отправки'; setTimeout(()=>{ btn.disabled=false; btn.textContent=t; },2000);} }); }
+        if(lf){ lf.addEventListener('submit', async (e)=>{ e.preventDefault(); const name=document.getElementById('leadName').value.trim(); const phone=document.getElementById('leadPhone').value.trim(); if(!name||!phone) return; const btn=lf.querySelector('button[type="submit"]'); const t=btn.textContent; btn.disabled=true; btn.textContent='Отправляем...'; try{ const ok = await sendToSalebot(name, phone); if(ok){ lf.style.display='none'; document.getElementById('successScreen').style.display='flex'; setTimeout(()=>{ leadModal.style.display='none'; lf.style.display='block'; document.getElementById('successScreen').style.display='none'; btn.disabled=false; btn.textContent=t; lf.reset(); },3000);} else{ btn.textContent='Ошибка отправки'; setTimeout(()=>{ btn.disabled=false; btn.textContent=t; },2000);} } catch(_){ btn.textContent='Ошибка отправки'; setTimeout(()=>{ btn.disabled=false; btn.textContent=t; },2000);} }); }
     </script>
 </body>
 </html>
