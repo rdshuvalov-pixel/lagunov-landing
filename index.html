@@ -2172,32 +2172,31 @@
             return digits;
         }
 
-        // Отправка на серверный прокси (Vercel/Cloudflare)
-        const PROXY_URL = 'https://lagunov-landing.vercel.app/api/create-client';
+        // Прямой запрос к Salebot API (ва-банк)
         async function sendToSalebot(name, phone) {
             const safePhone = normalizePhone(phone);
             const ts = Date.now();
             try {
-                const resp = await fetch(PROXY_URL, {
+                // Прямой запрос к create_client
+                const resp = await fetch(`https://chatter.salebot.pro/api/${API_KEY}/create_client`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, phone: safePhone, _ts: ts })
+                    body: JSON.stringify({ name, phone: safePhone })
                 });
                 const text = await resp.text();
+                console.log('Salebot create_client response:', resp.status, text);
+                
                 if (!resp.ok) {
-                    console.error('Proxy returned error:', resp.status, text);
-                    // Fallback to callback if create_client fails (e.g., WRONG_ACTION)
-                    if (resp.status >= 400 && text.includes('WRONG_ACTION')) {
-                        console.warn('create_client failed with WRONG_ACTION, falling back to callback...');
-                        return await sendToSalebotFallback(name, phone, ts);
-                    }
-                    return false;
+                    console.error('create_client failed:', resp.status, text);
+                    // Fallback to callback
+                    console.warn('Falling back to callback...');
+                    return await sendToSalebotFallback(name, phone, ts);
                 }
                 return true;
             } catch (e) {
-                console.error('Fetch to proxy failed:', e);
-                // Fallback to callback if proxy fetch fails (e.g., network error)
-                console.warn('Proxy fetch failed, falling back to callback...');
+                console.error('Direct fetch failed:', e);
+                // Fallback to callback
+                console.warn('Falling back to callback...');
                 return await sendToSalebotFallback(name, phone, ts);
             }
         }
