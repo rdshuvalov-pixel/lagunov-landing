@@ -2173,12 +2173,12 @@
         }
 
         function sendToSalebot(name, phone) {
-            // Упрощаем: только callback (save_variables даёт 500 без контекста клиента)
+            // Создаем клиента в CRM через create_client (без создания сделки)
             return new Promise((resolve) => {
                 const iframe = document.getElementsByName('salebot_transport')[0];
                 const form = document.createElement('form');
                 form.method = 'POST';
-                form.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
+                form.action = `https://chatter.salebot.pro/api/${API_KEY}/create_client`;
                 form.target = 'salebot_transport';
                 form.style.display = 'none';
 
@@ -2186,10 +2186,6 @@
                 const fields = {
                     name: name,
                     phone: safePhone,
-                    source: 'landing_lagunov_consultation',
-                    message: `Заявка на консультацию. Имя: ${name}. Телефон: ${safePhone}. Источник: landing.`,
-                    create_order: '1',
-                    state_id: '66428062',
                     _ts: Date.now()
                 };
                 Object.entries(fields).forEach(([k,v]) => {
