@@ -2172,56 +2172,16 @@
             return digits;
         }
 
-        // Общий постер на callback через скрытую форму
-        function postCallback(fields) {
-            return new Promise((resolve) => {
-                const iframe = document.getElementsByName('salebot_transport')[0];
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
-                form.target = 'salebot_transport';
-                form.style.display = 'none';
-                Object.entries(fields).forEach(([k,v]) => {
-                    const inp = document.createElement('input');
-                    inp.name = k;
-                    inp.value = String(v);
-                    form.appendChild(inp);
-                });
-                document.body.appendChild(form);
-                const onLoad = () => { iframe.removeEventListener('load', onLoad); try { form.remove(); } catch(_){}; resolve(true); };
-                iframe.addEventListener('load', onLoad);
-                setTimeout(() => { resolve(true); try { form.remove(); iframe.removeEventListener('load', onLoad); } catch(_){} }, 1000);
-                form.submit();
-            });
-        }
-
+        // Отправка на серверный прокси (Vercel/Cloudflare)
+        const PROXY_URL = 'https://autumn-dawn-f12d.rdshuvalov.workers.dev/';
         async function sendToSalebot(name, phone) {
             const safePhone = normalizePhone(phone);
-            const ts = Date.now();
-            // 1) Добавление клиента (callback как add client)
-            await postCallback({
-                name,
-                phone: safePhone,
-                message: `Добавление клиента. Имя: ${name}. Телефон: ${safePhone}.`,
-                _ts: ts
+            const resp = await fetch(PROXY_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, phone: safePhone })
             });
-            // 2) Дублирующий вызов "создание клиента" для теста
-            await postCallback({
-                name,
-                phone: safePhone,
-                message: `Создание клиента (дублирующий callback). Имя: ${name}. Телефон: ${safePhone}.`,
-                _ts: ts + 1
-            });
-            // 3) Создание сделки в этапе state_id
-            await postCallback({
-                name,
-                phone: safePhone,
-                message: `Создание сделки для клиента ${name}.`,
-                create_order: '1',
-                state_id: '66428062',
-                _ts: ts + 2
-            });
-            return true;
+            return resp.ok;
         }
 
         if (leadForm) {
