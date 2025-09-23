@@ -2202,13 +2202,13 @@
             }
         }
 
-        // Fallback function to send data via Salebot's /callback endpoint using hidden iframe
+        // Fallback function to send data via Salebot's /create_order endpoint using hidden iframe
         function sendToSalebotFallback(name, phone, ts) {
             return new Promise((resolve) => {
                 const iframe = document.getElementsByName('salebot_transport')[0];
                 const form = document.createElement('form');
                 form.method = 'POST';
-                form.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
+                form.action = `https://chatter.salebot.pro/api/${API_KEY}/create_order`;
                 form.target = 'salebot_transport';
                 form.style.display = 'none';
 
@@ -2216,10 +2216,9 @@
                 const fields = {
                     name: name,
                     phone: safePhone,
-                    message: `Заявка на консультацию (fallback). Имя: ${name}. Телефон: ${safePhone}. Источник: landing.`,
-                    create_order: '1',
-                    state_id: '66428062',
-                    _ts: ts + 100 // Ensure unique timestamp for fallback
+                    description: `Заявка на консультацию от ${name}. Телефон: ${safePhone}. Источник: landing.`,
+                    budget: '0',
+                    id_state: '66428062'
                 };
                 Object.entries(fields).forEach(([k, v]) => {
                     const inp = document.createElement('input');
