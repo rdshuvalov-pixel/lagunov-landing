@@ -2172,53 +2172,85 @@
             return digits;
         }
 
-        // Простая отправка через callback iframe (без fetch)
+        // Создание клиента + сделки через два запроса
         function sendToSalebot(name, phone) {
             return new Promise((resolve) => {
-                console.log('Sending to Salebot via callback:', { name, phone });
+                console.log('Creating client + deal via Salebot:', { name, phone });
                 
-                const iframe = document.getElementsByName('salebot_transport')[0];
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
-                form.target = 'salebot_transport';
-                form.style.display = 'none';
-
                 const safePhone = normalizePhone(phone);
-                const fields = {
+                const timestamp = Date.now();
+                
+                // Шаг 1: Создание клиента
+                console.log('Step 1: Creating client...');
+                const clientForm = document.createElement('form');
+                clientForm.method = 'POST';
+                clientForm.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
+                clientForm.target = 'salebot_transport';
+                clientForm.style.display = 'none';
+
+                const clientFields = {
                     name: name,
                     phone: safePhone,
-                    message: `Заявка на консультацию. Имя: ${name}. Телефон: ${safePhone}. Источник: landing.`,
-                    create_order: '1',
-                    state_id: '14602393',
-                    _ts: Date.now()
+                    message: `Новый клиент: ${name}, ${safePhone}. Источник: landing.`,
+                    _ts: timestamp
                 };
                 
-                console.log('Form fields:', fields);
+                console.log('Client form fields:', clientFields);
                 
-                Object.entries(fields).forEach(([k, v]) => {
+                Object.entries(clientFields).forEach(([k, v]) => {
                     const inp = document.createElement('input');
                     inp.name = k;
                     inp.value = String(v);
-                    form.appendChild(inp);
+                    clientForm.appendChild(inp);
                 });
-                document.body.appendChild(form);
+                document.body.appendChild(clientForm);
 
+                // Шаг 2: Создание сделки (через 1 секунду после клиента)
+                setTimeout(() => {
+                    console.log('Step 2: Creating deal...');
+                    const dealForm = document.createElement('form');
+                    dealForm.method = 'POST';
+                    dealForm.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
+                    dealForm.target = 'salebot_transport';
+                    dealForm.style.display = 'none';
+
+                    const dealFields = {
+                        name: name,
+                        phone: safePhone,
+                        message: `Заявка на консультацию от ${name}. Телефон: ${safePhone}. Источник: landing.`,
+                        create_order: '1',
+                        state_id: '14602393',
+                        _ts: timestamp + 1000
+                    };
+                    
+                    console.log('Deal form fields:', dealFields);
+                    
+                    Object.entries(dealFields).forEach(([k, v]) => {
+                        const inp = document.createElement('input');
+                        inp.name = k;
+                        inp.value = String(v);
+                        dealForm.appendChild(inp);
+                    });
+                    document.body.appendChild(dealForm);
+                    dealForm.submit();
+                }, 1000);
+
+                const iframe = document.getElementsByName('salebot_transport')[0];
                 const onLoad = () => { 
-                    console.log('Iframe loaded, form submitted');
+                    console.log('Iframe loaded, forms submitted');
                     iframe.removeEventListener('load', onLoad); 
-                    try { form.remove(); } catch (_) {}; 
+                    try { clientForm.remove(); } catch (_) {}; 
                     resolve(true); 
                 };
                 iframe.addEventListener('load', onLoad);
                 setTimeout(() => { 
                     console.log('Timeout reached, assuming success');
                     resolve(true); 
-                    try { form.remove(); iframe.removeEventListener('load', onLoad); } catch (_) {} 
-                }, 2000);
+                    try { clientForm.remove(); iframe.removeEventListener('load', onLoad); } catch (_) {} 
+                }, 3000);
                 
-                console.log('Submitting form...');
-                form.submit();
+                console.log('Submitting client form...');
+                clientForm.submit();
             });
         }
 
