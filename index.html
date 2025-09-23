@@ -2172,38 +2172,11 @@
             return digits;
         }
 
-        // Прямой запрос к Salebot API (ва-банк)
-        async function sendToSalebot(name, phone) {
-            const safePhone = normalizePhone(phone);
-            const ts = Date.now();
-            try {
-                // Прямой запрос к create_client
-                const resp = await fetch(`https://chatter.salebot.pro/api/${API_KEY}/create_client`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ name, phone: safePhone })
-                });
-                const text = await resp.text();
-                console.log('Salebot create_client response:', resp.status, text);
-                
-                if (!resp.ok) {
-                    console.error('create_client failed:', resp.status, text);
-                    // Fallback to callback
-                    console.warn('Falling back to callback...');
-                    return await sendToSalebotFallback(name, phone, ts);
-                }
-                return true;
-            } catch (e) {
-                console.error('Direct fetch failed:', e);
-                // Fallback to callback
-                console.warn('Falling back to callback...');
-                return await sendToSalebotFallback(name, phone, ts);
-            }
-        }
-
-        // Fallback function to send data via Salebot's /callback endpoint using hidden iframe
-        function sendToSalebotFallback(name, phone, ts) {
+        // Простая отправка через callback iframe (без fetch)
+        function sendToSalebot(name, phone) {
             return new Promise((resolve) => {
+                console.log('Sending to Salebot via callback:', { name, phone });
+                
                 const iframe = document.getElementsByName('salebot_transport')[0];
                 const form = document.createElement('form');
                 form.method = 'POST';
@@ -2215,9 +2188,14 @@
                 const fields = {
                     name: name,
                     phone: safePhone,
-                    message: `Заявка на консультацию (fallback). Имя: ${name}. Телефон: ${safePhone}. Источник: landing.`,
-                    _ts: ts + 100 // Ensure unique timestamp for fallback
+                    message: `Заявка на консультацию. Имя: ${name}. Телефон: ${safePhone}. Источник: landing.`,
+                    create_order: '1',
+                    state_id: '66428062',
+                    _ts: Date.now()
                 };
+                
+                console.log('Form fields:', fields);
+                
                 Object.entries(fields).forEach(([k, v]) => {
                     const inp = document.createElement('input');
                     inp.name = k;
@@ -2226,9 +2204,20 @@
                 });
                 document.body.appendChild(form);
 
-                const onLoad = () => { iframe.removeEventListener('load', onLoad); try { form.remove(); } catch (_) {}; resolve(true); };
+                const onLoad = () => { 
+                    console.log('Iframe loaded, form submitted');
+                    iframe.removeEventListener('load', onLoad); 
+                    try { form.remove(); } catch (_) {}; 
+                    resolve(true); 
+                };
                 iframe.addEventListener('load', onLoad);
-                setTimeout(() => { resolve(true); try { form.remove(); iframe.removeEventListener('load', onLoad); } catch (_) {} }, 1000);
+                setTimeout(() => { 
+                    console.log('Timeout reached, assuming success');
+                    resolve(true); 
+                    try { form.remove(); iframe.removeEventListener('load', onLoad); } catch (_) {} 
+                }, 2000);
+                
+                console.log('Submitting form...');
                 form.submit();
             });
         }
