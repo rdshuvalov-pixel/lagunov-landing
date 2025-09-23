@@ -2250,11 +2250,16 @@
                 submitBtn.textContent = 'Отправляем...';
                 try {
                     const ok = await sendToSalebot(name, phone);
-                    submitBtn.textContent = ok ? 'Заявка отправлена' : 'Ошибка отправки';
-                    if (ok) setTimeout(() => { leadModal.classList.remove('active'); submitBtn.textContent = originalText; submitBtn.disabled = false; leadForm.reset(); }, 1200);
+                    if (ok) {
+                        submitBtn.textContent = 'Благодарю за заявку. Я свяжусь с тобой в ближайшее время';
+                        setTimeout(() => { leadModal.classList.remove('active'); submitBtn.textContent = originalText; submitBtn.disabled = false; leadForm.reset(); }, 3000);
+                    } else {
+                        submitBtn.textContent = 'Ошибка отправки';
+                        setTimeout(() => { submitBtn.textContent = originalText; submitBtn.disabled = false; }, 2000);
+                    }
                 } catch (err) {
                     submitBtn.textContent = 'Ошибка отправки';
-                    setTimeout(() => { submitBtn.textContent = originalText; submitBtn.disabled = false; }, 1200);
+                    setTimeout(() => { submitBtn.textContent = originalText; submitBtn.disabled = false; }, 2000);
                 }
             });
         }

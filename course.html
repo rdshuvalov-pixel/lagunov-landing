@@ -1043,14 +1043,7 @@
             });
         });
 
-        // Form submission (если форма присутствует)
-        const courseForm = document.querySelector('form');
-        if (courseForm) {
-            courseForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Спасибо за заявку! Я свяжусь с вами в ближайшее время для подтверждения записи на практикум.');
-            });
-        }
+        // Form submission (если форма присутствует) - убрано, используется leadForm
 
         // Intersection Observer for animations
         const observerOptions = {
@@ -1172,7 +1165,7 @@
             });
         }
         const lf = document.getElementById('leadForm');
-        if(lf){ lf.addEventListener('submit', async (e)=>{ e.preventDefault(); const name=document.getElementById('leadName').value.trim(); const phone=document.getElementById('leadPhone').value.trim(); if(!name||!phone) return; const btn=lf.querySelector('button[type="submit"]'); const t=btn.textContent; btn.disabled=true; btn.textContent='Отправляем...'; try{ await sendToSalebot(name, phone); btn.textContent='Заявка отправлена'; setTimeout(()=>{ leadModal.style.display='none'; btn.disabled=false; btn.textContent=t; lf.reset(); },1200);} catch(_){ btn.textContent='Ошибка отправки'; setTimeout(()=>{ btn.disabled=false; btn.textContent=t; },1200);} }); }
+        if(lf){ lf.addEventListener('submit', async (e)=>{ e.preventDefault(); const name=document.getElementById('leadName').value.trim(); const phone=document.getElementById('leadPhone').value.trim(); if(!name||!phone) return; const btn=lf.querySelector('button[type="submit"]'); const t=btn.textContent; btn.disabled=true; btn.textContent='Отправляем...'; try{ const ok = await sendToSalebot(name, phone); if(ok){ btn.textContent='Благодарю за заявку. Я свяжусь с тобой в ближайшее время'; setTimeout(()=>{ leadModal.style.display='none'; btn.disabled=false; btn.textContent=t; lf.reset(); },3000);} else{ btn.textContent='Ошибка отправки'; setTimeout(()=>{ btn.disabled=false; btn.textContent=t; },2000);} } catch(_){ btn.textContent='Ошибка отправки'; setTimeout(()=>{ btn.disabled=false; btn.textContent=t; },2000);} }); }
     </script>
 </body>
 </html>
