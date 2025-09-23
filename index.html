@@ -2172,85 +2172,67 @@
             return digits;
         }
 
-        // Создание клиента + сделки через два запроса
-        function sendToSalebot(name, phone) {
-            return new Promise((resolve) => {
-                console.log('Creating client + deal via Salebot:', { name, phone });
-                
-                const safePhone = normalizePhone(phone);
-                const timestamp = Date.now();
-                
-                // Шаг 1: Создание клиента
-                console.log('Step 1: Creating client...');
-                const clientForm = document.createElement('form');
-                clientForm.method = 'POST';
-                clientForm.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
-                clientForm.target = 'salebot_transport';
-                clientForm.style.display = 'none';
+        // Отправка на серверный прокси (Vercel/Cloudflare)
+        const PROXY_URL = 'https://lagunov-landing.vercel.app/api/create-client';
+        async function sendToSalebot(name, phone) {
+            const safePhone = normalizePhone(phone);
+            const ts = Date.now();
+            try {
+                const resp = await fetch(PROXY_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, phone: safePhone, _ts: ts })
+                });
+                const text = await resp.text();
+                if (!resp.ok) {
+                    console.error('Proxy returned error:', resp.status, text);
+                    // Fallback to callback if create_client fails (e.g., WRONG_ACTION)
+                    if (resp.status >= 400 && text.includes('WRONG_ACTION')) {
+                        console.warn('create_client failed with WRONG_ACTION, falling back to callback...');
+                        return await sendToSalebotFallback(name, phone, ts);
+                    }
+                    return false;
+                }
+                return true;
+            } catch (e) {
+                console.error('Fetch to proxy failed:', e);
+                // Fallback to callback if proxy fetch fails (e.g., network error)
+                console.warn('Proxy fetch failed, falling back to callback...');
+                return await sendToSalebotFallback(name, phone, ts);
+            }
+        }
 
-                const clientFields = {
+        // Fallback function to send data via Salebot's /callback endpoint using hidden iframe
+        function sendToSalebotFallback(name, phone, ts) {
+            return new Promise((resolve) => {
+                const iframe = document.getElementsByName('salebot_transport')[0];
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
+                form.target = 'salebot_transport';
+                form.style.display = 'none';
+
+                const safePhone = normalizePhone(phone);
+                const fields = {
                     name: name,
                     phone: safePhone,
-                    message: `Новый клиент: ${name}, ${safePhone}. Источник: landing.`,
-                    _ts: timestamp
+                    message: `Заявка на консультацию (fallback). Имя: ${name}. Телефон: ${safePhone}. Источник: landing.`,
+                    create_order: '1',
+                    state_id: '14602393',
+                    _ts: ts + 100 // Ensure unique timestamp for fallback
                 };
-                
-                console.log('Client form fields:', clientFields);
-                
-                Object.entries(clientFields).forEach(([k, v]) => {
+                Object.entries(fields).forEach(([k, v]) => {
                     const inp = document.createElement('input');
                     inp.name = k;
                     inp.value = String(v);
-                    clientForm.appendChild(inp);
+                    form.appendChild(inp);
                 });
-                document.body.appendChild(clientForm);
+                document.body.appendChild(form);
 
-                // Шаг 2: Создание сделки (через 1 секунду после клиента)
-                setTimeout(() => {
-                    console.log('Step 2: Creating deal...');
-                    const dealForm = document.createElement('form');
-                    dealForm.method = 'POST';
-                    dealForm.action = `https://chatter.salebot.pro/api/${API_KEY}/callback`;
-                    dealForm.target = 'salebot_transport';
-                    dealForm.style.display = 'none';
-
-                    const dealFields = {
-                        name: name,
-                        phone: safePhone,
-                        message: `Заявка на консультацию от ${name}. Телефон: ${safePhone}. Источник: landing.`,
-                        create_order: '1',
-                        state_id: '14602393',
-                        _ts: timestamp + 1000
-                    };
-                    
-                    console.log('Deal form fields:', dealFields);
-                    
-                    Object.entries(dealFields).forEach(([k, v]) => {
-                        const inp = document.createElement('input');
-                        inp.name = k;
-                        inp.value = String(v);
-                        dealForm.appendChild(inp);
-                    });
-                    document.body.appendChild(dealForm);
-                    dealForm.submit();
-                }, 1000);
-
-                const iframe = document.getElementsByName('salebot_transport')[0];
-                const onLoad = () => { 
-                    console.log('Iframe loaded, forms submitted');
-                    iframe.removeEventListener('load', onLoad); 
-                    try { clientForm.remove(); } catch (_) {}; 
-                    resolve(true); 
-                };
+                const onLoad = () => { iframe.removeEventListener('load', onLoad); try { form.remove(); } catch (_) {}; resolve(true); };
                 iframe.addEventListener('load', onLoad);
-                setTimeout(() => { 
-                    console.log('Timeout reached, assuming success');
-                    resolve(true); 
-                    try { clientForm.remove(); iframe.removeEventListener('load', onLoad); } catch (_) {} 
-                }, 3000);
-                
-                console.log('Submitting client form...');
-                clientForm.submit();
+                setTimeout(() => { resolve(true); try { form.remove(); iframe.removeEventListener('load', onLoad); } catch (_) {} }, 1000);
+                form.submit();
             });
         }
 
