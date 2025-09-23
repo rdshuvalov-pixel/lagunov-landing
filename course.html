@@ -1108,17 +1108,66 @@
         // Нормализация телефона, отправка в Salebot аналогично главной
         function normalizePhone(raw){ let d=(raw||'').replace(/\D+/g,''); if(d.startsWith('8')&&d.length===11)d='7'+d.slice(1); if(d.startsWith('7')&&d.length===11)return '+'+d; if(d.startsWith('9')&&d.length===10)return '+7'+d; if(!d.startsWith('+')) return '+'+d; return d; }
         const API_KEY = 'c85dbe3b5267d8474b16b41c74881ae4';
-        function sendToSalebot(name, phone){
-            return new Promise((resolve)=>{
+        
+        // Отправка на серверный прокси (Vercel/Cloudflare)
+        const PROXY_URL = 'https://lagunov-landing.vercel.app/api/create-order';
+        async function sendToSalebot(name, phone) {
+            const safePhone = normalizePhone(phone);
+            const ts = Date.now();
+            try {
+                const resp = await fetch(PROXY_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, phone: safePhone, _ts: ts })
+                });
+                const text = await resp.text();
+                if (!resp.ok) {
+                    console.error('Proxy returned error:', resp.status, text);
+                    // Fallback to callback if create_order fails (e.g., WRONG_ACTION)
+                    if (resp.status >= 400 && text.includes('WRONG_ACTION')) {
+                        console.warn('create_order failed with WRONG_ACTION, falling back to callback...');
+                        return await sendToSalebotFallback(name, phone, ts);
+                    }
+                    return false;
+                }
+                return true;
+            } catch (e) {
+                console.error('Fetch to proxy failed:', e);
+                // Fallback to callback if proxy fetch fails (e.g., network error)
+                console.warn('Proxy fetch failed, falling back to callback...');
+                return await sendToSalebotFallback(name, phone, ts);
+            }
+        }
+
+        // Fallback function to send data via Salebot's /create_order endpoint using hidden iframe
+        function sendToSalebotFallback(name, phone, ts) {
+            return new Promise((resolve) => {
                 const iframe = document.getElementsByName('salebot_transport')[0];
                 const form = document.createElement('form');
-                form.method='POST'; form.action=`https://chatter.salebot.pro/api/${API_KEY}/callback`; form.target='salebot_transport'; form.style.display='none';
-                const fields = { name, phone: normalizePhone(phone), source:'landing_lagunov_consultation', message:`Заявка на консультацию. Имя: ${name}. Телефон: ${normalizePhone(phone)}. Источник: landing.`, create_order:'1', state_id:'66428062', _ts:Date.now() };
-                Object.entries(fields).forEach(([k,v])=>{ const i=document.createElement('input'); i.name=k; i.value=String(v); form.appendChild(i); });
+                form.method = 'POST';
+                form.action = `https://chatter.salebot.pro/api/${API_KEY}/create_order`;
+                form.target = 'salebot_transport';
+                form.style.display = 'none';
+
+                const safePhone = normalizePhone(phone);
+                const fields = {
+                    name: name,
+                    phone: safePhone,
+                    description: `Заявка на консультацию от ${name}. Телефон: ${safePhone}. Источник: landing.`,
+                    budget: '0',
+                    id_state: '66428062'
+                };
+                Object.entries(fields).forEach(([k, v]) => {
+                    const inp = document.createElement('input');
+                    inp.name = k;
+                    inp.value = String(v);
+                    form.appendChild(inp);
+                });
                 document.body.appendChild(form);
-                const onLoad=()=>{ iframe.removeEventListener('load',onLoad); try{form.remove();}catch(_){}; resolve(true); };
+
+                const onLoad = () => { iframe.removeEventListener('load', onLoad); try { form.remove(); } catch (_) {}; resolve(true); };
                 iframe.addEventListener('load', onLoad);
-                setTimeout(()=>{ resolve(true); try{form.remove(); iframe.removeEventListener('load', onLoad);}catch(_){} },1000);
+                setTimeout(() => { resolve(true); try { form.remove(); iframe.removeEventListener('load', onLoad); } catch (_) {} }, 1000);
                 form.submit();
             });
         }
