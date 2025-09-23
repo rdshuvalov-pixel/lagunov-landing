@@ -2173,7 +2173,7 @@
         }
 
         // Отправка на серверный прокси (Vercel/Cloudflare)
-        const PROXY_URL = 'https://lagunov-landing.vercel.app/api/create-client';
+        const PROXY_URL = 'https://lagunov-landing.vercel.app/api/create-order';
         async function sendToSalebot(name, phone) {
             const safePhone = normalizePhone(phone);
             const ts = Date.now();

@@ -25,20 +25,32 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'SALEBOT_API_KEY not configured' });
     }
 
-    const urlCreate = `https://chatter.salebot.pro/api/${apiKey}/create_client`;
+    const urlCreate = `https://chatter.salebot.pro/api/${apiKey}/create_order`;
     let r = await fetch(urlCreate, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, phone })
+      body: JSON.stringify({ 
+        name, 
+        phone, 
+        description: `Заявка на консультацию от ${name}. Телефон: ${phone}. Источник: landing.`,
+        budget: 0,
+        id_state: 66428062
+      })
     });
     let text = await r.text();
     // Если у ключа нет прав (WRONG_ACTION) или другой 4xx, делаем фолбэк на callback
     if (!r.ok && /WRONG_ACTION/i.test(text)) {
-      const urlCb = `https://chatter.salebot.pro/api/${apiKey}/callback`;
+      const urlCb = `https://chatter.salebot.pro/api/${apiKey}/create_order`;
       r = await fetch(urlCb, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, phone, message: `Добавление клиента (fallback) ${name}` })
+        body: JSON.stringify({ 
+          name, 
+          phone, 
+          description: `Заявка на консультацию от ${name}. Телефон: ${phone}. Источник: landing.`,
+          budget: 0,
+          id_state: 66428062
+        })
       });
       text = await r.text();
     }
