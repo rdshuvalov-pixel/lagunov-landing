@@ -2186,6 +2186,7 @@
                 const fields = {
                     name: name,
                     phone: safePhone,
+                    message: `Заявка на консультацию. Имя: ${name}. Телефон: ${safePhone}. Источник: landing.`,
                     _ts: Date.now()
                 };
                 Object.entries(fields).forEach(([k,v]) => {
