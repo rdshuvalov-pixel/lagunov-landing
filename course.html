@@ -406,14 +406,19 @@
         
         /* CTA Section */
         .cta-section {
-            padding: 200px 0;
+            padding: 60px 0;
             background: var(--gradient);
             color: white;
             text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            box-sizing: border-box;
         }
         
-        .cta-section h2 {
-            font-size: 2.5rem;
+        .cta-section h2,
+        .cta-section h1 {
+            font-size: 4.5rem;
             font-weight: 800;
             margin-bottom: 1.5rem;
         }
@@ -422,6 +427,48 @@
             font-size: 1.2rem;
             margin-bottom: 3rem;
             opacity: 0.9;
+        }
+        .cta-section .price-block {
+            margin: 0 auto 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+        }
+        .cta-section .old-price {
+            display: inline-block;
+            background: rgba(255,255,255,0.45);
+            padding: 6px 16px;
+            border-radius: 12px;
+            min-width: 180px;
+            text-align: center;
+            
+        }
+
+        .cta-section .new-price {
+            display: inline-block;
+            background: rgba(255,255,255,0.95);
+            padding: 6px 16px;
+            border-radius: 12px;
+            min-width: 180px;
+            text-align: center;
+            
+        }
+        .cta-section .old-price {
+            color: #ef4444;
+            font-size: 1.2rem;
+            text-decoration: line-through;
+        }
+        .cta-section .new-price {
+            color: #111827;
+            font-size: 2.4rem;
+            font-weight: 900;
+        }
+        .cta-section .btn-primary {
+            font-size: 1.5rem;
+            padding: 21px 44px;
+            white-space: nowrap;
         }
         
         /* Contact Section */
@@ -623,8 +670,19 @@
             }
             
             .cta-section {
-                padding: 100px 0;
+                min-height: 100vh;
+                padding: 40px 0;
+                display: flex;
+                align-items: center;
             }
+            .cta-section h1,
+            .cta-section h2 {
+                font-size: 2.8rem;
+                line-height: 1.1;
+            }
+            .cta-section .price-block { margin-bottom: 32px; }
+            .cta-section .new-price { font-size: 1.9rem; }
+            .cta-section .btn-primary { font-size: 1.2rem; padding: 18px 36px; white-space: nowrap; }
             
             .contact-content {
                 grid-template-columns: 1fr;
@@ -653,8 +711,17 @@
             }
             
             .cta-section {
-                padding: 80px 0;
+                min-height: 100vh;
+                padding: 32px 0;
             }
+            .cta-section h1,
+            .cta-section h2 {
+                font-size: 2.2rem;
+                line-height: 1.05;
+            }
+            .cta-section .price-block { margin-bottom: 28px; }
+            .cta-section .new-price { font-size: 1.8rem; }
+            .cta-section .btn-primary { font-size: 1.1rem; padding: 16px 30px; white-space: nowrap; }
         }
         
         /* Animations */
@@ -893,9 +960,13 @@
     <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
-            <h2>Сделай шаг на карьерном пути</h2>
-            <p>Свяжись со мной, чтобы уже завтра понимать вектор твоей карьеры</p>
-            <a href="#" class="btn-primary js-lead-open">Записаться на консультацию</a>
+            <h1>Сделай шаг на карьерном пути</h1>
+            <p>Понятный вектор на следующие 3-5 лет </br>по цене двух чашек кофе</p>
+            <div class="price-block">
+                <span class="old-price">990 ₽</span>
+                <span class="new-price">390 ₽</span>
+            </div>
+            <a href="https://t.me/saletest2_bot" target="_blank" class="btn-primary">Начать практикум сейчас</a>
         </div>
     </section>
 
